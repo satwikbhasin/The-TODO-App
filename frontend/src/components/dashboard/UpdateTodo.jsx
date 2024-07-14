@@ -31,10 +31,6 @@ const UpdateTodo = ({ selectedTodo }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     updateTodo(selectedTodo.id, updatedTodo);
-    setUpdatedTodo({
-      title: "",
-      completed: false,
-    });
     window.location.reload();
   };
 
@@ -60,8 +56,10 @@ const UpdateTodo = ({ selectedTodo }) => {
           borderRadius: "10px",
           backgroundColor: theme.palette.secondary.main,
           color: theme.palette.secondary.text,
-          overflow: "hidden",
-          padding: "10px",
+          padding: "15px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Box>
@@ -73,8 +71,8 @@ const UpdateTodo = ({ selectedTodo }) => {
             alignItems={"center"}
             gap={1}
           >
-            <PencilLine size={24} color={theme.palette.icons.main} /> Update
-            Todo
+            <PencilLine size={24} color={theme.palette.secondary.icons} />{" "}
+            Update Todo
           </Typography>
           <Typography
             variant="body1"
@@ -95,15 +93,13 @@ const UpdateTodo = ({ selectedTodo }) => {
         boxShadow:
           "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
-        height: "40%",
-        left: "0",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,
-        padding: "10px",
-        overflowY: "hidden",
+        padding: "15px",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        gap: 2,
       }}
     >
       <Typography
@@ -113,89 +109,123 @@ const UpdateTodo = ({ selectedTodo }) => {
         justifyContent={"center"}
         alignItems={"center"}
         gap={1}
-        sx={{ marginBottom: "20px" }}
       >
         {selectedTodo.title}
-        <PencilLine size={24} color={theme.palette.icons.main} />
+        <PencilLine size={24} color={theme.palette.secondary.icons} />
       </Typography>
       <FormControl component="form" onSubmit={handleSubmit} fullWidth>
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            flexGrow: 1,
-            gap: "10px",
-            marginBottom: "20px",
+            flexDirection: "column",
+            gap: 3,
           }}
         >
-          <TextField
-            label="New Title"
-            name="title"
-            value={updateTodo.title}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-            sx={{ flex: 2 }}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="completed"
-                checked={updatedTodo.completed}
-                onChange={handleChange}
-                sx={{
-                  flex: 1,
-                  color: theme.palette.icons.main,
-                  "&.Mui-checked": {
-                    color: theme.palette.icons.main,
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: { xs: "column", md: "row" },
+              gap: { xs: 0, md: 2 },
+            }}
+          >
+            <TextField
+              label="New Title"
+              name="title"
+              value={updateTodo.title}
+              onChange={handleChange}
+              fullWidth
+              margin="normal"
+              sx={{
+                flex: 2,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: theme.palette.secondary.misc,
                   },
-                }}
-              />
-            }
-            label="Completed"
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            flexGrow: 1,
-            gap: "10px",
-          }}
-        >
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={selectedTodo === updateTodo}
+                  "&:hover fieldset": {
+                    borderColor: theme.palette.secondary.misc,
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: theme.palette.secondary.misc,
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: theme.palette.secondary.text,
+                  "&.Mui-focused": {
+                    color: theme.palette.secondary.text,
+                  },
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="completed"
+                  checked={updatedTodo.completed}
+                  onChange={handleChange}
+                  sx={{
+                    flex: { xs: "none", md: 1 },
+                    color: theme.palette.secondary.icons,
+                    "&.Mui-checked": {
+                      color: theme.palette.secondary.icons,
+                    },
+                  }}
+                />
+              }
+              label="Completed"
+            />
+          </Box>
+          <Box
             sx={{
-              flex: 1,
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.secondary.text,
-              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: { xs: "column", md: "row" },
+              flexGrow: 1,
+              gap: "10px",
             }}
-            startIcon={
-              <FilePenLine size={20} color={theme.palette.icons.main} />
-            }
-            onClick={handleSubmit}
           >
-            Update
-          </Button>
-          <Button
-            type="button"
-            variant="contained"
-            color="primary"
-            sx={{
-              flex: 1,
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.secondary.text,
-              borderRadius: "10px",
-            }}
-            startIcon={<Trash size={20} color={theme.palette.icons.main} />}
-            onClick={handleDelete}
-          >
-            Delete
-          </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={
+                updatedTodo.title === "" ||
+                (updatedTodo.title === selectedTodo.title &&
+                  updatedTodo.completed === selectedTodo.completed)
+              }
+              sx={{
+                flex: 1,
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.secondary.text,
+                width: "50%",
+              }}
+              startIcon={
+                <FilePenLine size={20} color={theme.palette.secondary.icons} />
+              }
+              onClick={handleSubmit}
+            >
+              Update
+            </Button>
+            <Button
+              type="button"
+              variant="contained"
+              color="primary"
+              sx={{
+                flex: 1,
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.secondary.text,
+                width: "50%",
+              }}
+              startIcon={
+                <Trash size={20} color={theme.palette.secondary.icons} />
+              }
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+          </Box>
         </Box>
       </FormControl>
     </Box>

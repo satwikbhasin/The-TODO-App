@@ -19,7 +19,11 @@ const App = () => {
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <div style={{ backgroundColor: isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main, height: "100%" }}>
+      <div style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main,
+      }}>
         <Navbar toggleTheme={toggleTheme} />
         <Base />
       </div>

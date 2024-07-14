@@ -6,15 +6,23 @@ import { addTodo } from "../../methods/todoOperations";
 
 const NewTodo = () => {
   const theme = useTheme();
-  const [title, setTitle] = useState("");
+  const [todo, setTodo] = useState({
+    title: "",
+    completed: false,
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addTodo({
-      title: title,
-      completed: false,
-    });
+    addTodo(todo);
     window.location.reload();
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setTodo((prevTodo) => ({
+      ...prevTodo,
+      [name]: value,
+    }));
   };
 
   return (
@@ -24,9 +32,11 @@ const NewTodo = () => {
           "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
-        color: useTheme().palette.secondary.text,
+        color: theme.palette.secondary.text,
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
         padding: "15px",
-        overflowY: "hidden",
       }}
     >
       <Typography
@@ -37,13 +47,12 @@ const NewTodo = () => {
         alignItems={"center"}
         gap={1}
       >
-        <ListPlus size={24} color={theme.palette.icons.main} />
+        <ListPlus size={24} color={theme.palette.secondary.icons} />
         Add New
       </Typography>
       <FormControl
         component="form"
         onSubmit={handleSubmit}
-        fullWidth
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -53,24 +62,40 @@ const NewTodo = () => {
       >
         <TextField
           label="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          name="title"
+          value={todo.title}
+          onChange={handleChange}
           fullWidth
           sx={{
             marginTop: "20px",
             marginBottom: "15px",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: theme.palette.secondary.misc,
+              },
+              "&:hover fieldset": {
+                borderColor: theme.palette.secondary.misc,
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: theme.palette.secondary.misc,
+              },
+            },
+            "& .MuiInputLabel-root": {
+              color: theme.palette.secondary.text,
+              "&.Mui-focused": {
+                color: theme.palette.secondary.text,
+              },
+            },
           }}
         />
         <Button
           type="submit"
           variant="contained"
           sx={{
-            backgroundColor: theme.palette.primary.main,
-            color: theme.palette.secondary.text,
-            borderRadius: "10px",
-            width: "20%",
+            width: "50%",
           }}
-          startIcon={<Plus size={20} color={theme.palette.icons.main} />}
+          disabled={!todo.title}
+          startIcon={<Plus size={20} color={theme.palette.secondary.icons} />}
         >
           Add Todo
         </Button>

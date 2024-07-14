@@ -14,8 +14,8 @@ const Navbar = ({ toggleTheme }) => {
       position="static"
     >
       <Toolbar>
-        <IconButton edge="start" aria-label="menu" color="icons">
-          <CheckCheckIcon />
+        <IconButton edge="start" aria-label="menu">
+          <CheckCheckIcon color={theme.palette.secondary.icons} />
         </IconButton>
         <Typography
           variant="h6"

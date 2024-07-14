@@ -39,6 +39,18 @@ const themeSwitch = (mode) => {
     };
 };
 
+const genericButton = (mode) => {
+    return {
+        root: {
+            backgroundColor: mode === 'light' ? "#E2DFD2" : "#0C0C0C",
+            color: mode === 'light' ? "#0C0C0C" : "#E2DFD2",
+            "&:hover": {
+                backgroundColor: mode === 'light' ? "#c6c5b9" : "#46494c",
+            },
+        },
+    };
+}
+
 const lightTheme = createTheme({
     palette: {
         mode: 'light',
@@ -46,11 +58,10 @@ const lightTheme = createTheme({
             main: '#E2DFD2',
         },
         secondary: {
-            main: '##DAF7A6',
+            main: '#c9c5b1',
             text: '#0C0C0C',
-        },
-        icons: {
-            main: '#F2613F',
+            icons: "#F2613F",
+            misc: '#D84A05',
         },
     },
     typography: {
@@ -59,6 +70,9 @@ const lightTheme = createTheme({
     components: {
         MuiSwitch: {
             styleOverrides: themeSwitch('light'),
+        },
+        MuiButton: {
+            styleOverrides: genericButton('light'),
         },
     },
 });
@@ -72,13 +86,8 @@ const darkTheme = createTheme({
         secondary: {
             main: '#1e1e1e',
             text: '#E2DFD2',
-        },
-        icons: {
-            main: '#F2613F',
-        },
-        buttons: {
-            main: '#D84A05',
-            hover: '#F2613F',
+            icons: "#F2613F",
+            misc: '#D84A05',
         },
     },
     typography: {
@@ -87,6 +96,9 @@ const darkTheme = createTheme({
     components: {
         MuiSwitch: {
             styleOverrides: themeSwitch('dark'),
+        },
+        MuiButton: {
+            styleOverrides: genericButton('dark'),
         },
     },
 });

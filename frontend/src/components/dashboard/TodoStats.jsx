@@ -30,6 +30,9 @@ const TodoStats = () => {
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Typography
@@ -41,15 +44,15 @@ const TodoStats = () => {
         gap={1}
         sx={{ marginBottom: "20px" }}
       >
-        <BarChart2 size={24} color={theme.palette.icons.main} />
+        <BarChart2 size={24} color={theme.palette.secondary.icons} />
         Stats
       </Typography>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: { xs: "column", lg: "row" },
           justifyContent: "center",
-          gap: 5,
+          gap: { xs: 1, lg: 5 },
         }}
       >
         <Typography
@@ -59,7 +62,7 @@ const TodoStats = () => {
           alignItems={"center"}
           gap={1}
         >
-          <Sigma size={19} color={theme.palette.icons.main} />
+          <Sigma size={19} color={theme.palette.secondary.icons} />
           Total = {stats.total}
         </Typography>
         <Typography
@@ -69,7 +72,7 @@ const TodoStats = () => {
           alignItems={"center"}
           gap={1}
         >
-          <CheckCheck size={19} color={theme.palette.icons.main} />
+          <CheckCheck size={19} color={theme.palette.secondary.icons} />
           Completed = {stats.completed}
         </Typography>
         <Typography
@@ -79,7 +82,7 @@ const TodoStats = () => {
           alignItems={"center"}
           gap={1}
         >
-          <CircleSlash size={19} color={theme.palette.icons.main} />
+          <CircleSlash size={19} color={theme.palette.secondary.icons} />
           Incomplete = {stats.incomplete}
         </Typography>
       </Box>

@@ -6,9 +6,15 @@ import {
   ListItem,
   TextField,
   IconButton,
+  Button,
 } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import { List as ListIcon, CheckCheck, RefreshCcw } from "lucide-react";
+import {
+  List as ListIcon,
+  CheckCheck,
+  RefreshCcw,
+  ChevronRight,
+} from "lucide-react";
 import { getAllTodos } from "../../methods/todoOperations";
 
 const AllTodos = ({ onSelect }) => {
@@ -46,29 +52,29 @@ const AllTodos = ({ onSelect }) => {
   return (
     <Box
       sx={{
-        width: "40%",
-        height: "80vh",
         boxShadow:
           "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
-        left: "0",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,
         padding: "15px",
         display: "flex",
         flexDirection: "column",
+        width: "100%",
+        height: { xs: "40vh", md: "80vh" },
       }}
     >
       <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        width="100%"
-        mb={2}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "15px",
+        }}
       >
         <Box flexGrow={1} display="flex" justifyContent="center">
           <Typography variant="h6" display="flex" alignItems="center" gap={1}>
-            <ListIcon size={24} color={theme.palette.icons.main} /> All
+            <ListIcon size={24} color={theme.palette.secondary.icons} /> All
           </Typography>
         </Box>
         <IconButton
@@ -78,7 +84,7 @@ const AllTodos = ({ onSelect }) => {
             transform: isRotating ? "rotate(360deg)" : "rotate(0deg)",
           }}
         >
-          <RefreshCcw size={24} color={theme.palette.icons.main} />
+          <RefreshCcw size={24} color={theme.palette.secondary.icons} />
         </IconButton>
       </Box>
       <Box>
@@ -93,6 +99,7 @@ const AllTodos = ({ onSelect }) => {
       </Box>
       <Box
         sx={{
+          display: "flex",
           overflowY: "auto",
           flexGrow: 1,
         }}
@@ -102,16 +109,30 @@ const AllTodos = ({ onSelect }) => {
             <ListItem
               key={index}
               onClick={() => onSelect(todo)}
-              sx={{ width: "100%", display: "block" }}
+              sx={{
+                gap: 1,
+              }}
             >
-              <Typography variant="body1">
-                {todo.title.length > 20
-                  ? `${todo.title.substring(0, 30)}...`
-                  : todo.title}
-                {todo.completed && (
-                  <CheckCheck size={19} color={theme.palette.icons.main} />
-                )}
-              </Typography>
+              <ChevronRight size={19} color={theme.palette.secondary.icons} />
+              <Button
+                sx={{
+                  backgroundColor: "transparent",
+                  textTransform: "none",
+                  justifyContent: "left",
+                }}
+              >
+                <Typography variant="body1">
+                  {todo.title.length > 20
+                    ? `${todo.title.substring(0, 30)}...`
+                    : todo.title}
+                  {todo.completed && (
+                    <CheckCheck
+                      size={19}
+                      color={theme.palette.secondary.icons}
+                    />
+                  )}
+                </Typography>
+              </Button>
             </ListItem>
           ))}
         </List>
