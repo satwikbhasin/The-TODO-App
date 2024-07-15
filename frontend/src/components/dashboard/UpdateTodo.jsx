@@ -107,8 +107,6 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
   return (
     <Box
       sx={{
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,
