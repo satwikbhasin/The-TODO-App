@@ -9,11 +9,15 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { lightTheme, darkTheme } from './themes';
+import { getThemeFromCookie, setThemeInCookie } from './methods/cookieOperations';
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const initialTheme = getThemeFromCookie();
+  const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
 
   const toggleTheme = () => {
+    const newTheme = isDarkMode ? 'light' : 'dark';
+    setThemeInCookie(newTheme);
     setIsDarkMode(!isDarkMode);
   };
 
@@ -30,7 +34,6 @@ const App = () => {
     </ThemeProvider>
   );
 };
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
