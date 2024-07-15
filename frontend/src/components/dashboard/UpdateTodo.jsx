@@ -13,7 +13,7 @@ import { PencilLine, Trash, FilePenLine } from "lucide-react";
 import { updateTodo, deleteTodo } from "../../methods/todoOperations";
 
 const UpdateTodo = ({ selectedTodo, callbacks }) => {
-  const { refreshAllTodos, refreshStats, handleUpdateTodo } = callbacks;
+  const { refreshAllTodos, refreshStats, handleUpdateOrDeleteTodo } = callbacks;
   const theme = useTheme();
   const [updatedTodo, setUpdatedTodo] = useState({
     title: "",
@@ -35,11 +35,11 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
       await updateTodo(selectedTodo.id, updatedTodo);
       refreshAllTodos();
       refreshStats();
+      handleUpdateOrDeleteTodo();
       setUpdatedTodo({
         title: "",
         completed: false,
       });
-      handleUpdateTodo();
     } catch (error) {
       console.error("Error updating todo:", error);
     }
@@ -50,6 +50,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
       await deleteTodo(selectedTodo.id);
       refreshAllTodos();
       refreshStats();
+      handleUpdateOrDeleteTodo();
     } catch (error) {
       console.error("Error deleting todo:", error);
     }

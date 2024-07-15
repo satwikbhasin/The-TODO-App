@@ -26,14 +26,14 @@ const Base = () => {
     }
   };
 
-  const handleUpdateTodo = (todo) => {
+  const handleUpdateOrDeleteTodo = (todo) => {
     setSelectedTodo(null);
   };
 
   const callbacks = {
     refreshAllTodos,
     refreshStats,
-    handleUpdateTodo
+    handleUpdateOrDeleteTodo
   };
 
   return (
@@ -78,7 +78,7 @@ const Base = () => {
         <UpdateTodo
           selectedTodo={selectedTodo}
           callbacks={callbacks}
-          handleUpdateTodo={handleUpdateTodo}
+          handleUpdateOrDeleteTodo={handleUpdateOrDeleteTodo}
         />
       </Box>
     </Container>
