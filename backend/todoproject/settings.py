@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n^0b8tb#uw!2bakh=rb-0tko$08)@zdw8mpm_lm!sf!x74d92q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '18.205.27.184', 'ec2-18-205-27-184.compute-1.amazonaws.com', 'http://d12eo7gxjc1eku.cloudfront.net']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '18.205.27.184', 'ec2-18-205-27-184.compute-1.amazonaws.com']
 
 # Application definition
 
@@ -56,7 +56,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://roulettech-todo-app-frontend.s3-website-us-east-1.amazonaws.com"
+    "http://roulettech-todo-app-frontend.s3-website-us-east-1.amazonaws.com",
+    "http://d12eo7gxjc1eku.cloudfront.net",
 ]
 
 ROOT_URLCONF = 'todoproject.urls'
