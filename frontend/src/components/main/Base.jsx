@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Container, Box } from "@mui/material";
 import AllTodos from "../dashboard/AllTodos";
 import AddTodo from "../dashboard/NewTodo";
@@ -7,9 +7,33 @@ import UpdateTodo from "../dashboard/UpdateTodo";
 
 const Base = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
+  const allTodosRef = useRef(null);
+  const statsRef = useRef(null);
 
   const handleSelect = (todo) => {
     setSelectedTodo(todo);
+  };
+
+  const refreshAllTodos = () => {
+    if (allTodosRef.current) {
+      allTodosRef.current.fetchTodos();
+    }
+  };
+
+  const refreshStats = () => {
+    if (statsRef.current) {
+      statsRef.current.fetchStats();
+    }
+  };
+
+  const handleUpdateTodo = (todo) => {
+    setSelectedTodo(null);
+  };
+
+  const callbacks = {
+    refreshAllTodos,
+    refreshStats,
+    handleUpdateTodo
   };
 
   return (
@@ -36,7 +60,7 @@ const Base = () => {
           height: "100%",
         }}
       >
-        <AllTodos onSelect={handleSelect} />
+        <AllTodos onSelect={handleSelect} ref={allTodosRef} />
       </Box>
       <Box
         sx={{
@@ -49,9 +73,13 @@ const Base = () => {
           height: "100%",
         }}
       >
-        <AddTodo />
-        <TodoStats />
-        <UpdateTodo selectedTodo={selectedTodo} />
+        <AddTodo callbacks={callbacks} />
+        <TodoStats ref={statsRef} />
+        <UpdateTodo
+          selectedTodo={selectedTodo}
+          callbacks={callbacks}
+          handleUpdateTodo={handleUpdateTodo}
+        />
       </Box>
     </Container>
   );

@@ -12,7 +12,8 @@ import { useTheme } from "@mui/material/styles";
 import { PencilLine, Trash, FilePenLine } from "lucide-react";
 import { updateTodo, deleteTodo } from "../../methods/todoOperations";
 
-const UpdateTodo = ({ selectedTodo }) => {
+const UpdateTodo = ({ selectedTodo, callbacks }) => {
+  const { refreshAllTodos, refreshStats, handleUpdateTodo } = callbacks;
   const theme = useTheme();
   const [updatedTodo, setUpdatedTodo] = useState({
     title: "",
@@ -28,15 +29,30 @@ const UpdateTodo = ({ selectedTodo }) => {
     }
   }, [selectedTodo]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    updateTodo(selectedTodo.id, updatedTodo);
-    window.location.reload();
+    try {
+      await updateTodo(selectedTodo.id, updatedTodo);
+      refreshAllTodos();
+      refreshStats();
+      setUpdatedTodo({
+        title: "",
+        completed: false,
+      });
+      handleUpdateTodo();
+    } catch (error) {
+      console.error("Error updating todo:", error);
+    }
   };
 
-  const handleDelete = () => {
-    deleteTodo(selectedTodo.id);
-    window.location.reload();
+  const handleDelete = async () => {
+    try {
+      await deleteTodo(selectedTodo.id);
+      refreshAllTodos();
+      refreshStats();
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
   };
 
   const handleChange = (event) => {
@@ -51,8 +67,8 @@ const UpdateTodo = ({ selectedTodo }) => {
     return (
       <Box
         sx={{
-          boxShadow:
-            "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
+          // boxShadow:
+          //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
           borderRadius: "10px",
           backgroundColor: theme.palette.secondary.main,
           color: theme.palette.secondary.text,
@@ -133,7 +149,7 @@ const UpdateTodo = ({ selectedTodo }) => {
             <TextField
               label="New Title"
               name="title"
-              value={updateTodo.title}
+              value={updatedTodo.title}
               onChange={handleChange}
               fullWidth
               margin="normal"

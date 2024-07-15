@@ -4,17 +4,27 @@ import { useTheme } from "@mui/material/styles";
 import { ListPlus, Plus } from "lucide-react";
 import { addTodo } from "../../methods/todoOperations";
 
-const NewTodo = () => {
+const NewTodo = ({ callbacks }) => {
+  const { refreshAllTodos, refreshStats } = callbacks;
   const theme = useTheme();
   const [todo, setTodo] = useState({
     title: "",
     completed: false,
   });
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    addTodo(todo);
-    window.location.reload();
+    try {
+      await addTodo(todo);
+      refreshAllTodos();
+      refreshStats();
+      setTodo({
+        title: "",
+        completed: false,
+      });
+    } catch (error) {
+      console.error("Error adding todo:", error);
+    }
   };
 
   const handleChange = (event) => {
@@ -28,8 +38,8 @@ const NewTodo = () => {
   return (
     <Box
       sx={{
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
+        // boxShadow:
+        //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,

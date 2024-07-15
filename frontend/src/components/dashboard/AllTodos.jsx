@@ -1,4 +1,10 @@
-import { React, useState, useEffect } from "react";
+import {
+  React,
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import {
   Box,
   Typography,
@@ -17,11 +23,17 @@ import {
 } from "lucide-react";
 import { getAllTodos } from "../../methods/todoOperations";
 
-const AllTodos = ({ onSelect }) => {
+const AllTodos = forwardRef(({ onSelect }, ref) => {
   const theme = useTheme();
   const [searchTerm, setSearchTerm] = useState("");
   const [todos, setTodos] = useState([]);
   const [isRotating, setIsRotating] = useState(false);
+  const [selectedTodo, setSelectedTodo] = useState(null);
+
+  const handleSelect = (todo) => {
+    setSelectedTodo(todo);
+    onSelect(todo);
+  };
 
   const fetchTodos = async () => {
     setIsRotating(true);
@@ -41,6 +53,10 @@ const AllTodos = ({ onSelect }) => {
     fetchTodos();
   }, []);
 
+  useImperativeHandle(ref, () => ({
+    fetchTodos,
+  }));
+
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -52,8 +68,8 @@ const AllTodos = ({ onSelect }) => {
   return (
     <Box
       sx={{
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
+        // boxShadow:
+        //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,
@@ -108,7 +124,7 @@ const AllTodos = ({ onSelect }) => {
           {filteredTodos.map((todo, index) => (
             <ListItem
               key={index}
-              onClick={() => onSelect(todo)}
+              onClick={() => handleSelect(todo)}
               sx={{
                 gap: 1,
               }}
@@ -116,7 +132,10 @@ const AllTodos = ({ onSelect }) => {
               <ChevronRight size={19} color={theme.palette.secondary.icons} />
               <Button
                 sx={{
-                  backgroundColor: "transparent",
+                  backgroundColor:
+                    selectedTodo === todo
+                      ? theme.palette.primary.main
+                      : "transparent",
                   textTransform: "none",
                   justifyContent: "left",
                 }}
@@ -139,6 +158,6 @@ const AllTodos = ({ onSelect }) => {
       </Box>
     </Box>
   );
-};
+});
 
 export default AllTodos;
