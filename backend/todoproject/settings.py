@@ -56,6 +56,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://roulettech-todo-app-frontend.s3-website-us-east-1.amazonaws.com"
 ]
 
 ROOT_URLCONF = 'todoproject.urls'
