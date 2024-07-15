@@ -122,37 +122,46 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
       >
         <List>
           {filteredTodos.map((todo, index) => (
-            <ListItem
-              key={index}
-              onClick={() => handleSelect(todo)}
+            <Box
               sx={{
-                gap: 1,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
               <ChevronRight size={19} color={theme.palette.secondary.icons} />
-              <Button
+              <ListItem
+                key={index}
+                onClick={() => handleSelect(todo)}
                 sx={{
-                  backgroundColor:
-                    selectedTodo === todo
-                      ? theme.palette.primary.main
-                      : "transparent",
-                  textTransform: "none",
-                  justifyContent: "left",
+                  gap: 1,
                 }}
               >
-                <Typography variant="body1">
-                  {todo.title.length > 20
-                    ? `${todo.title.substring(0, 30)}...`
-                    : todo.title}
-                  {todo.completed && (
-                    <CheckCheck
-                      size={19}
-                      color={theme.palette.secondary.icons}
-                    />
-                  )}
-                </Typography>
-              </Button>
-            </ListItem>
+                <Button
+                  sx={{
+                    backgroundColor:
+                      selectedTodo === todo
+                        ? theme.palette.primary.main
+                        : "transparent",
+                    textTransform: "none",
+                    justifyContent: "left",
+                    width: "100%",
+                  }}
+                >
+                  <Typography variant="body1" sx={{ whiteSpace: "nowrap" }}>
+                    {todo.title.length > 20
+                      ? `${todo.title.substring(0, 30)}...`
+                      : todo.title}
+                    {todo.completed && (
+                      <CheckCheck
+                        size={19}
+                        color={theme.palette.secondary.icons}
+                      />
+                    )}
+                  </Typography>
+                </Button>
+              </ListItem>
+            </Box>
           ))}
         </List>
       </Box>
