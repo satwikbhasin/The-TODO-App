@@ -24,7 +24,7 @@ const Navbar = ({ toggleTheme }) => {
         >
           TODO
         </Typography>
-        <Switch onChange={toggleTheme} defaultChecked />
+        <Switch onChange={toggleTheme} checked={theme.palette.mode === "dark"} />
       </Toolbar>
     </AppBar>
   );
