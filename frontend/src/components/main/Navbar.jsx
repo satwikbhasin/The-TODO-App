@@ -34,7 +34,7 @@ const Navbar = ({ toggleTheme }) => {
           gap={1}
         >
           <CheckCheckIcon color={theme.palette.secondary.icons} />
-          <Typography variant="h6" sx={{ color: theme.palette.secondary.text }}>
+          <Typography variant="h6" sx={{ color: theme.palette.secondary.heading }}>
             TODO
           </Typography>
           <Switch
@@ -55,7 +55,7 @@ const Navbar = ({ toggleTheme }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                color: theme.palette.secondary.text,
+                color: theme.palette.secondary.heading,
               }}
               gap={1}
             >
@@ -65,7 +65,7 @@ const Navbar = ({ toggleTheme }) => {
               <IconButton
                 variant="contained"
                 onClick={handleLogout}
-                sx={{ textTransform: "none" }}
+                sx={{ textTransform: "none", color: theme.palette.secondary.icons }}
               >
                 <LogOut />
               </IconButton>

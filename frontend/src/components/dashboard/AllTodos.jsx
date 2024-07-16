@@ -68,8 +68,11 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
   return (
     <Box
       sx={{
+        background: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
-        backgroundColor: theme.palette.secondary.main,
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
         padding: "15px",
         display: "flex",
@@ -122,6 +125,7 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
         <List>
           {filteredTodos.map((todo, index) => (
             <Box
+              key={index}
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -130,7 +134,6 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
             >
               <ChevronRight size={19} color={theme.palette.secondary.icons} />
               <ListItem
-                key={index}
                 onClick={() => handleSelect(todo)}
                 sx={{
                   gap: 1,
@@ -140,8 +143,12 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
                   sx={{
                     backgroundColor:
                       selectedTodo === todo
-                        ? theme.palette.primary.main
+                        ? theme.palette.secondary.main
                         : "transparent",
+                    color:
+                      selectedTodo === todo
+                        ? theme.palette.secondary.heading
+                        : theme.palette.secondary.text,
                     textTransform: "none",
                     justifyContent: "left",
                     width: "100%",

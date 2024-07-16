@@ -53,15 +53,16 @@ const Signup = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
+        background: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+        borderRadius: "10px",
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
+        color: theme.palette.secondary.text,
         flexDirection: "column",
         width: { xs: "70%", md: "40%" },
         height: "40%",
         padding: "20px",
-        borderRadius: "30px",
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.text,
       }}
     >
       <FormControl

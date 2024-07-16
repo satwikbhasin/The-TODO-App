@@ -35,8 +35,11 @@ const TodoStats = forwardRef((props, ref) => {
     <Box
       sx={{
         padding: "15px",
+        backgroundColor: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
-        backgroundColor: theme.palette.secondary.main,
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
         width: "100%",
         display: "flex",

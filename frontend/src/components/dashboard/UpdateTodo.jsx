@@ -68,8 +68,11 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
     return (
       <Box
         sx={{
+          backgroundColor: theme.palette.background.glassmorphism,
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+          border: "1px solid rgba( 255, 255, 255, 0.18 )",
           borderRadius: "10px",
-          backgroundColor: theme.palette.secondary.main,
           color: theme.palette.secondary.text,
           padding: "15px",
           width: "100%",
@@ -105,8 +108,11 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
   return (
     <Box
       sx={{
+        backgroundColor: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
-        backgroundColor: theme.palette.secondary.main,
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
         padding: "15px",
         width: "100%",
@@ -211,7 +217,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
               sx={{
                 flex: 1,
                 backgroundColor: theme.palette.primary.main,
-                color: theme.palette.secondary.text,
+                color: theme.palette.secondary.heading,
                 width: "50%",
               }}
               startIcon={
@@ -228,7 +234,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
               sx={{
                 flex: 1,
                 backgroundColor: theme.palette.primary.main,
-                color: theme.palette.secondary.text,
+                color: theme.palette.secondary.heading,
                 width: "50%",
               }}
               startIcon={

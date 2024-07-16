@@ -56,14 +56,16 @@ const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         flexDirection: "column",
         width: { xs: "70%", md: "40%" },
         height: "40%",
         padding: "20px",
         borderRadius: "30px",
-        backgroundColor: theme.palette.secondary.main,
+        background: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+        borderRadius: "10px",
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
       }}
     >
@@ -111,12 +113,12 @@ const Login = () => {
           onChange={handleChange}
           InputProps={{
             endAdornment: (
-              <InputAdornment position="end">
+              <InputAdornment position="start">
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={togglePasswordVisibility}
                   edge="end"
-                  sx={{ paddingRight: "48%", color: theme.palette.secondary.text }}
+                  sx={{ color: theme.palette.secondary.text }}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </IconButton>
