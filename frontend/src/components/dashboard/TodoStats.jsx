@@ -8,7 +8,7 @@ import {
 import { Typography, Box } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { BarChart2, Sigma, CheckCheck, CircleSlash } from "lucide-react";
-import { getTodoStats } from "../../methods/todoOperations";
+import { getTodoStats } from "../../methods/todos";
 
 const TodoStats = forwardRef((props, ref) => {
   const theme = useTheme();
@@ -35,8 +35,6 @@ const TodoStats = forwardRef((props, ref) => {
     <Box
       sx={{
         padding: "15px",
-        // boxShadow:
-        //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,

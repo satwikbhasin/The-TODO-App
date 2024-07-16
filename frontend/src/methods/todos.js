@@ -1,9 +1,15 @@
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+import Cookies from 'js-cookie';
+
+const backendUrl = process.env.REACT_APP_BACKEND_API_URL;
+const authToken = `Token ${Cookies.get('todoApp-authToken')}`;
 
 export const getAllTodos = async () => {
     try {
-        const response = await fetch(backendUrl, {
+        const response = await fetch(backendUrl + 'todos/', {
             method: 'GET',
+            headers: {
+                'Authorization': authToken,
+            },
         });
         if (!response.ok) {
             throw new Error(response);
@@ -17,10 +23,11 @@ export const getAllTodos = async () => {
 
 export const addTodo = async (todo) => {
     try {
-        const response = await fetch(backendUrl, {
+        const response = await fetch(backendUrl + 'todos/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': authToken,
             },
             body: JSON.stringify(todo),
         });
@@ -34,8 +41,11 @@ export const addTodo = async (todo) => {
 
 export const deleteTodo = async (id) => {
     try {
-        const response = await fetch(`${backendUrl}${id}/`, {
+        const response = await fetch(backendUrl + `todos/${id}/`, {
             method: 'DELETE',
+            headers: {
+                'Authorization': authToken,
+            }
         });
         if (!response.ok) {
             throw new Error(response);
@@ -47,10 +57,11 @@ export const deleteTodo = async (id) => {
 
 export const updateTodo = async (id, updatedTodo) => {
     try {
-        const response = await fetch(`${backendUrl}${id}/`, {
+        const response = await fetch(backendUrl + `todos/${id}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': authToken,
             },
             body: JSON.stringify(updatedTodo),
         });
@@ -64,8 +75,11 @@ export const updateTodo = async (id, updatedTodo) => {
 
 export const getTodoStats = async () => {
     try {
-        const response = await fetch(`${backendUrl}stats/`, {
+        const response = await fetch(backendUrl + 'todos/stats/', {
             method: 'GET',
+            headers: {
+                'Authorization': authToken,
+            },
         });
         if (!response.ok) {
             throw new Error(response);

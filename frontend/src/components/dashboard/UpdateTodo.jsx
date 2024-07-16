@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { PencilLine, Trash, FilePenLine } from "lucide-react";
-import { updateTodo, deleteTodo } from "../../methods/todoOperations";
+import { updateTodo, deleteTodo } from "../../methods/todos";
 
 const UpdateTodo = ({ selectedTodo, callbacks }) => {
   const { refreshAllTodos, refreshStats, handleUpdateOrDeleteTodo } = callbacks;
@@ -68,8 +68,6 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
     return (
       <Box
         sx={{
-          // boxShadow:
-          //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
           borderRadius: "10px",
           backgroundColor: theme.palette.secondary.main,
           color: theme.palette.secondary.text,

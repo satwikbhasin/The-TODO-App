@@ -5,7 +5,7 @@ import AddTodo from "../dashboard/NewTodo";
 import TodoStats from "../dashboard/TodoStats";
 import UpdateTodo from "../dashboard/UpdateTodo";
 
-const Base = () => {
+const Dashboard = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
   const allTodosRef = useRef(null);
   const statsRef = useRef(null);
@@ -33,7 +33,7 @@ const Base = () => {
   const callbacks = {
     refreshAllTodos,
     refreshStats,
-    handleUpdateOrDeleteTodo
+    handleUpdateOrDeleteTodo,
   };
 
   return (
@@ -85,4 +85,4 @@ const Base = () => {
   );
 };
 
-export default Base;
+export default Dashboard;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Typography, TextField, Button, FormControl } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { ListPlus, Plus } from "lucide-react";
-import { addTodo } from "../../methods/todoOperations";
+import { addTodo } from "../../methods/todos";
 
 const NewTodo = ({ callbacks }) => {
   const { refreshAllTodos, refreshStats } = callbacks;
@@ -38,8 +38,6 @@ const NewTodo = ({ callbacks }) => {
   return (
     <Box
       sx={{
-        // boxShadow:
-        //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,

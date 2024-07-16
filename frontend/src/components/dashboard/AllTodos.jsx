@@ -21,7 +21,7 @@ import {
   RefreshCcw,
   ChevronRight,
 } from "lucide-react";
-import { getAllTodos } from "../../methods/todoOperations";
+import { getAllTodos } from "../../methods/todos";
 
 const AllTodos = forwardRef(({ onSelect }, ref) => {
   const theme = useTheme();
@@ -68,8 +68,6 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
   return (
     <Box
       sx={{
-        // boxShadow:
-        //   "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         borderRadius: "10px",
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.text,
@@ -111,6 +109,7 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
           value={searchTerm}
           onChange={handleSearchChange}
           sx={{ marginBottom: "15px" }}
+          disabled={todos.length === 0}
         />
       </Box>
       <Box

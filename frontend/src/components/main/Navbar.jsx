@@ -1,30 +1,77 @@
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import { CheckCheckIcon } from "lucide-react";
-import { Switch } from "@mui/material";
+import {
+  Switch,
+  IconButton,
+  Box,
+  Typography,
+  Toolbar,
+  AppBar,
+} from "@mui/material";
+import { CheckCheckIcon, LogOut } from "lucide-react";
 import { useTheme } from "@emotion/react";
+import { useAuth } from "../../AuthContext";
 
 const Navbar = ({ toggleTheme }) => {
+  const { logout, isLoggedIn, currentUser } = useAuth();
   const theme = useTheme();
+
+  const handleLogout = async () => {
+    await logout();
+    window.location.reload();
+  };
+
   return (
     <AppBar
       sx={{ backgroundColor: theme.palette.primary.main }}
       position="static"
     >
-      <Toolbar>
-        <IconButton edge="start" aria-label="menu">
-          <CheckCheckIcon color={theme.palette.secondary.icons} />
-        </IconButton>
-        <Typography
-          variant="h6"
-          sx={{ color: theme.palette.secondary.text }}
-          flexGrow={1}
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+          gap={1}
         >
-          TODO
-        </Typography>
-        <Switch onChange={toggleTheme} checked={theme.palette.mode === "dark"} />
+          <CheckCheckIcon color={theme.palette.secondary.icons} />
+          <Typography variant="h6" sx={{ color: theme.palette.secondary.text }}>
+            TODO
+          </Typography>
+          <Switch
+            onChange={toggleTheme}
+            checked={theme.palette.mode === "dark"}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+          gap={5}
+        >
+          {isLoggedIn && (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                color: theme.palette.secondary.text,
+              }}
+              gap={1}
+            >
+              <Typography variant="body1" sx={{ cursor: "default" }}>
+                {currentUser.username}
+              </Typography>
+              <IconButton
+                variant="contained"
+                onClick={handleLogout}
+                sx={{ textTransform: "none" }}
+              >
+                <LogOut />
+              </IconButton>
+            </Box>
+          )}
+        </Box>
       </Toolbar>
     </AppBar>
   );
