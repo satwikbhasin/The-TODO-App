@@ -21,7 +21,7 @@ const Authentication = () => {
         alignItems: "center",
         flexDirection: "column",
         width: "100%",
-        height: "100%",
+        height: "100vh",
       }}
     >
       <Tabs

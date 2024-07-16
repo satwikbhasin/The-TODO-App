@@ -26,7 +26,7 @@ const App = () => {
                         display: 'flex',
                         flexDirection: 'column',
                         width: '100vw',
-                        height: '100vh',
+                        height: { xs: '100vh', md: '100%' },
                         backgroundColor: isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main,
                     }}>
                         <Navbar toggleTheme={toggleTheme} />
