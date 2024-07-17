@@ -7,7 +7,7 @@ import {
   AppBar,
 } from "@mui/material";
 import { CheckCheckIcon, LogOut } from "lucide-react";
-import { ThemeContext, useTheme } from "@emotion/react";
+import { useTheme } from "@emotion/react";
 import { useAuth } from "../../AuthContext";
 
 const Navbar = ({ toggleTheme }) => {
