@@ -47,7 +47,7 @@ const Dashboard = () => {
         marginBottom: { xs: "20px", md: "40px" },
         gap: { xs: 5, md: 10 },
         width: "100%",
-        height: { xs: "auto", md: "80vh" },
+        height: { xs: "auto", md: "max-content" },
       }}
     >
       <Box
