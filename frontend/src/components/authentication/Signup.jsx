@@ -83,6 +83,9 @@ const Signup = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -110,6 +113,9 @@ const Signup = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -137,6 +143,9 @@ const Signup = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -157,7 +166,7 @@ const Signup = () => {
         <Button
           type="submit"
           variant="contained"
-          sx={{ mt: 3 }}
+          sx={{ mt: 3, fontFamily: theme.typography.body1 }}
           disabled={loading}
         >
           Sign Up

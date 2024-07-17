@@ -7,7 +7,7 @@ import {
   AppBar,
 } from "@mui/material";
 import { CheckCheckIcon, LogOut } from "lucide-react";
-import { useTheme } from "@emotion/react";
+import { ThemeContext, useTheme } from "@emotion/react";
 import { useAuth } from "../../AuthContext";
 
 const Navbar = ({ toggleTheme }) => {
@@ -34,7 +34,10 @@ const Navbar = ({ toggleTheme }) => {
           gap={1}
         >
           <CheckCheckIcon color={theme.palette.secondary.icons} />
-          <Typography variant="h6" sx={{ color: theme.palette.secondary.heading }}>
+          <Typography
+            variant="heading"
+            sx={{ color: theme.palette.secondary.heading }}
+          >
             TODO
           </Typography>
           <Switch
@@ -59,13 +62,16 @@ const Navbar = ({ toggleTheme }) => {
               }}
               gap={1}
             >
-              <Typography variant="body1" sx={{ cursor: "default" }}>
+              <Typography variant="heading" sx={{ cursor: "default" }}>
                 {currentUser.username}
               </Typography>
               <IconButton
                 variant="contained"
                 onClick={handleLogout}
-                sx={{ textTransform: "none", color: theme.palette.secondary.icons }}
+                sx={{
+                  textTransform: "none",
+                  color: theme.palette.secondary.icons,
+                }}
               >
                 <LogOut />
               </IconButton>

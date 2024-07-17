@@ -47,7 +47,7 @@ const TodoStats = forwardRef((props, ref) => {
       }}
     >
       <Typography
-        variant="h6"
+        variant="heading"
         gutterBottom={true}
         display={"flex"}
         justifyContent={"center"}
@@ -67,7 +67,7 @@ const TodoStats = forwardRef((props, ref) => {
         }}
       >
         <Typography
-          variant="body1"
+          variant="body2"
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -77,7 +77,7 @@ const TodoStats = forwardRef((props, ref) => {
           Total = {stats.total}
         </Typography>
         <Typography
-          variant="body1"
+          variant="body2"
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -87,7 +87,7 @@ const TodoStats = forwardRef((props, ref) => {
           Completed = {stats.completed}
         </Typography>
         <Typography
-          variant="body1"
+          variant="body2"
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}

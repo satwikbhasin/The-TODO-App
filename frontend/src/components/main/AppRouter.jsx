@@ -16,7 +16,7 @@ const AppRouter = () => {
   if (loading) {
     return (
       <Box
-        style={{
+        sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -26,7 +26,7 @@ const AppRouter = () => {
         <CircleDashed
           size={48}
           style={{ animation: "spin 5s linear infinite" }}
-          color={theme.palette.secondary.misc}
+          color={theme.palette.secondary.text}
         />
       </Box>
     );

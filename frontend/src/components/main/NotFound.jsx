@@ -12,6 +12,7 @@ const NotFound = () => {
       flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"center"}
+      height={"100vh"}
     >
       <img
         src={notFoundImage}
@@ -24,6 +25,7 @@ const NotFound = () => {
         variant="h6"
         color={theme.palette.secondary.text}
         sx={{ display: "flex", alignItems: "center", gap: 1 }}
+        fontFamily={theme.typography.heading}
       >
         <Undo2 size="20" />
         Guide Me Back

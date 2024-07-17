@@ -65,7 +65,7 @@ const Dashboard = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: { xs: "column-reverse", md: "column" },
           justifyContent: "space-between",
           alignItems: "center",
           gap: { xs: 4 },

@@ -70,7 +70,18 @@ const lightTheme = createTheme({
         }
     },
     typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
+        heading: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 18,
+        },
+        body1: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 13,
+        },
+        body2: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 11,
+        }
     },
     components: {
         MuiSwitch: {
@@ -101,7 +112,18 @@ const darkTheme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
+        heading: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 18,
+        },
+        body1: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 13,
+        },
+        body2: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 11,
+        }
     },
     components: {
         MuiSwitch: {

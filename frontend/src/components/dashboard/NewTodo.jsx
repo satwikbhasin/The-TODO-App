@@ -51,7 +51,7 @@ const NewTodo = ({ callbacks }) => {
       }}
     >
       <Typography
-        variant="h6"
+        variant="heading"
         gutterBottom={true}
         display={"flex"}
         justifyContent={"center"}
@@ -74,22 +74,23 @@ const NewTodo = ({ callbacks }) => {
         <TextField
           label="Title"
           name="title"
-          value={todo.title}
-          onChange={handleChange}
           fullWidth
+          value={todo.title}
+          variant="standard"
+          onChange={handleChange}
           sx={{
-            marginTop: "20px",
-            marginBottom: "15px",
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: theme.palette.secondary.misc,
-              },
-              "&:hover fieldset": {
-                borderColor: theme.palette.secondary.misc,
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: theme.palette.secondary.misc,
-              },
+            height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            "& .MuiInput-underline:before": {
+              borderBottomColor: theme.palette.secondary.text,
+            },
+            "&:hover .MuiInput-underline:before": {
+              borderBottomColor: theme.palette.secondary.misc,
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: theme.palette.secondary.misc,
             },
             "& .MuiInputLabel-root": {
               color: theme.palette.secondary.text,
@@ -97,6 +98,7 @@ const NewTodo = ({ callbacks }) => {
                 color: theme.palette.secondary.text,
               },
             },
+            marginBottom: "10%",
           }}
         />
         <Button
@@ -104,6 +106,7 @@ const NewTodo = ({ callbacks }) => {
           variant="contained"
           sx={{
             width: "50%",
+            fontFamily: theme.typography.body1,
           }}
           disabled={!todo.title}
           startIcon={<Plus size={20} color={theme.palette.secondary.icons} />}

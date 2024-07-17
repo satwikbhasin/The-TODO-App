@@ -60,7 +60,6 @@ const Login = () => {
         width: { xs: "70%", md: "40%" },
         height: "40%",
         padding: "20px",
-        borderRadius: "30px",
         background: theme.palette.background.glassmorphism,
         backdropFilter: "blur(4px)",
         WebkitBackdropFilter: "blur(4px)",
@@ -87,6 +86,9 @@ const Login = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -128,6 +130,9 @@ const Login = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -145,7 +150,11 @@ const Login = () => {
             },
           }}
         />
-        <Button type="submit" variant="contained" sx={{ mt: 3 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ mt: 3, fontFamily: theme.typography.body1 }}
+        >
           Login
         </Button>
         <Box sx={{ display: "flex", justifyContent: "center", height: "10px" }}>

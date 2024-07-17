@@ -50,7 +50,10 @@ const Authentication = () => {
       >
         <Tab
           label="Login"
-          sx={{ color: theme.palette.secondary.text }}
+          sx={{
+            color: theme.palette.secondary.text,
+            fontFamily: theme.typography.body1,
+          }}
           iconPosition="start"
           icon={
             <LogIn
@@ -65,7 +68,10 @@ const Authentication = () => {
         />
         <Tab
           label="Sign Up"
-          sx={{ color: theme.palette.secondary.text }}
+          sx={{
+            color: theme.palette.secondary.text,
+            fontFamily: theme.typography.body1,
+          }}
           iconPosition="start"
           icon={
             <UserRoundPlus
