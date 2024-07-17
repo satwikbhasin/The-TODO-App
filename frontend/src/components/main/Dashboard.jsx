@@ -64,22 +64,27 @@ const Dashboard = () => {
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: { xs: "column-reverse", md: "column" },
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: { xs: 4 },
           width: { xs: "80%", md: "40%" },
-          height: "100%",
         }}
       >
-        <AddTodo callbacks={callbacks} />
-        <TodoStats ref={statsRef} />
-        <UpdateTodo
-          selectedTodo={selectedTodo}
-          callbacks={callbacks}
-          handleUpdateOrDeleteTodo={handleUpdateOrDeleteTodo}
-        />
+        <Box
+          sx={{
+            display: "flex",
+            gap: { xs: 4 },
+            flexDirection: { xs: "column-reverse", md: "column" },
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <AddTodo callbacks={callbacks} />
+          <TodoStats ref={statsRef} />
+          <UpdateTodo
+            selectedTodo={selectedTodo}
+            callbacks={callbacks}
+            handleUpdateOrDeleteTodo={handleUpdateOrDeleteTodo}
+          />
+        </Box>
       </Box>
     </Container>
   );
