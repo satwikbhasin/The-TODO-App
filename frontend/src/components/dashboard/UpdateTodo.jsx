@@ -12,6 +12,15 @@ import { useTheme } from "@mui/material/styles";
 import { PencilLine, Trash, FilePenLine } from "lucide-react";
 import { updateTodo, deleteTodo } from "../../methods/todos";
 
+/**
+ * UpdateTodo component is responsible for rendering a form to update or delete a selected todo.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.selectedTodo - The selected todo object.
+ * @param {Object} props.callbacks - The callback functions for handling updates and deletions.
+ * @returns {JSX.Element} The rendered UpdateTodo component.
+ */
 const UpdateTodo = ({ selectedTodo, callbacks }) => {
   const { refreshAllTodos, refreshStats, handleUpdateOrDeleteTodo } = callbacks;
   const theme = useTheme();

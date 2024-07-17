@@ -1,3 +1,9 @@
+/* Global styles for the application, 
+setting up full viewport height, 
+removing default margins and paddings, 
+and establishing a flexbox layout for the body and 
+root container for consistent vertical expansion and alignment. */
+
 html,
 body,
 #root {

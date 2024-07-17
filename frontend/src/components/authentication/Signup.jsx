@@ -3,6 +3,12 @@ import { Box, TextField, Button, Typography, FormControl } from "@mui/material";
 import { useAuth } from "../../AuthContext";
 import { useTheme } from "@emotion/react";
 
+/**
+ * Renders a signup component with username, password, and confirm password fields.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered signup component.
+ */
 const Signup = () => {
   const { signup } = useAuth();
   const theme = useTheme();

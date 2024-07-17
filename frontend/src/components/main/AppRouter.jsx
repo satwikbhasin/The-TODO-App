@@ -9,6 +9,11 @@ import { Box } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import NotFound from "./NotFound";
 
+/**
+ * Renders the main application router.
+ *
+ * @returns {JSX.Element} The rendered AppRouter component.
+ */
 const AppRouter = () => {
   const { isLoggedIn, loading } = useAuth();
   const theme = useTheme();

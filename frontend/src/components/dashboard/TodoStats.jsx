@@ -10,6 +10,14 @@ import { useTheme } from "@emotion/react";
 import { BarChart2, Sigma, CheckCheck, CircleSlash } from "lucide-react";
 import { getTodoStats } from "../../methods/todos";
 
+/**
+ * Represents a component for displaying statistics of todo items.
+ *
+ * @component
+ * @param {Object} props - The props object containing the component's properties.
+ * @param {React.Ref} ref - The ref object used to expose the fetchStats function.
+ * @returns {JSX.Element} The JSX element representing the TodoStats component.
+ */
 const TodoStats = forwardRef((props, ref) => {
   const theme = useTheme();
   const [stats, setStats] = useState({ total: 0, completed: 0, incomplete: 0 });

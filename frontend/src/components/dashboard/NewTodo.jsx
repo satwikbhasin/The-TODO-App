@@ -4,6 +4,13 @@ import { useTheme } from "@mui/material/styles";
 import { ListPlus, Plus } from "lucide-react";
 import { addTodo } from "../../methods/todos";
 
+/**
+ * Represents a component for adding a new todo item.
+ *
+ * @component
+ * @param {Object} callbacks - The callbacks object containing the refreshAllTodos and refreshStats functions.
+ * @returns {JSX.Element} The JSX element representing the NewTodo component.
+ */
 const NewTodo = ({ callbacks }) => {
   const { refreshAllTodos, refreshStats } = callbacks;
   const theme = useTheme();

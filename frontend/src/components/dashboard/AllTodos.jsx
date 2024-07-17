@@ -24,6 +24,15 @@ import {
 } from "lucide-react";
 import { getAllTodos } from "../../methods/todos";
 
+/**
+ * Renders a component that displays a list of todos with search functionality and refresh button.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSelect - The callback function to be called when a todo is selected.
+ * @param {React.Ref} ref - The ref object used to expose the `fetchTodos` function.
+ * @returns {JSX.Element} The rendered component.
+ */
 const AllTodos = forwardRef(({ onSelect }, ref) => {
   const theme = useTheme();
   const [searchTerm, setSearchTerm] = useState("");

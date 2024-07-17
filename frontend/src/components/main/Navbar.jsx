@@ -10,6 +10,14 @@ import { CheckCheckIcon, LogOut } from "lucide-react";
 import { useTheme } from "@emotion/react";
 import { useAuth } from "../../AuthContext";
 
+/**
+ * Represents the navigation bar component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.toggleTheme - The callback function to toggle the theme.
+ * @returns {JSX.Element} The JSX element representing the navigation bar.
+ */
 const Navbar = ({ toggleTheme }) => {
   const { logout, isLoggedIn, currentUser } = useAuth();
   const theme = useTheme();

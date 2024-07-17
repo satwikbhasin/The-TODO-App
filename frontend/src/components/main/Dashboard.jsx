@@ -5,6 +5,13 @@ import AddTodo from "../dashboard/NewTodo";
 import TodoStats from "../dashboard/TodoStats";
 import UpdateTodo from "../dashboard/UpdateTodo";
 
+/**
+ * Dashboard component represents the main dashboard of the application.
+ * It displays a list of todos, todo statistics, and provides functionality to add, update, and delete todos.
+ *
+ * @component
+ * @returns {JSX.Element} The JSX element representing the dashboard.
+ */
 const Dashboard = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
   const allTodosRef = useRef(null);

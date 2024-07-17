@@ -12,6 +12,12 @@ import { useAuth } from "../../AuthContext";
 import { useTheme } from "@emotion/react";
 import { Eye, EyeOff } from "lucide-react";
 
+/**
+ * Renders a login component with username and password fields.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered login component.
+ */
 const Login = () => {
   const { login } = useAuth();
   const theme = useTheme();

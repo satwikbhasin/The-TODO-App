@@ -3,6 +3,11 @@ import notFoundImage from "../../assets/images/404.svg";
 import { useTheme } from "@emotion/react";
 import { Undo2 } from "lucide-react";
 
+/**
+ * Renders the NotFound component, which displays a 404 error page.
+ *
+ * @returns {JSX.Element} The rendered NotFound component.
+ */
 const NotFound = () => {
   const theme = useTheme();
 

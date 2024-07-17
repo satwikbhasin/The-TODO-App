@@ -1,18 +1,53 @@
+/**
+ * @file This file defines the AuthContext used for managing authentication state across the React application.
+ */
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
+/**
+ * @typedef {Object} AuthContextValue
+ * @property {Object} currentUser - The current user object.
+ * @property {boolean} isLoggedIn - Indicates if the user is logged in.
+ * @property {Function} login - Function to log in a user.
+ * @property {Function} logout - Function to log out the current user.
+ * @property {Function} signup - Function to sign up a new user.
+ * @property {boolean} loading - Indicates if the authentication state is still loading.
+ */
+
+/**
+ * @type {React.Context<AuthContextValue>}
+ */
 const AuthContext = createContext();
+
+// Using the BACKEND_API_URL environment variable to determine the backend URL
 const backendUrl = process.env.REACT_APP_BACKEND_API_URL;
 
+/**
+ * Custom hook to use the AuthContext.
+ * @returns {AuthContextValue} The AuthContext value.
+ */
 export function useAuth() {
     return useContext(AuthContext);
 }
 
+/**
+ * Provider component that wraps around parts of the app needing auth state.
+ * @param {Object} props - The component props.
+ * @param {React.ReactNode} props.children - The child components.
+ * @returns {React.ReactNode} The rendered component.
+ */
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    /**
+     * Function to sign up a new user.
+     * @param {string} username - The username of the user.
+     * @param {string} password - The password of the user.
+     * @throws {Error} If the signup fails.
+     */
     const signup = async (username, password) => {
         try {
             const response = await fetch(backendUrl + 'users/signup/', {
@@ -40,6 +75,12 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    /**
+     * Function to log in a user.
+     * @param {string} username - The username of the user.
+     * @param {string} password - The password of the user.
+     * @throws {Error} If the login fails.
+     */
     const login = async (username, password) => {
         try {
             const response = await fetch(backendUrl + 'users/getToken/', {
@@ -67,6 +108,12 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    /**
+     * Function to validate the user's token by sending it to the backend and checking the response.
+     * @param {string} token - The authentication token.
+     * @param {string} username - The username of the user.
+     * @returns {Promise<boolean>} A promise that resolves to true if the token is valid, false otherwise.
+     */
     const validateToken = async (token, username) => {
         const response = await fetch(backendUrl + 'users/validateToken/', {
             method: 'POST',
@@ -84,6 +131,9 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    /**
+     * Function to log out the current user.
+     */
     const logout = () => {
         setCurrentUser(null);
         setIsLoggedIn(false);
@@ -91,6 +141,9 @@ export const AuthProvider = ({ children }) => {
         Cookies.remove('todoApp-authToken', { path: '/' });
     };
 
+    /**
+     * Effect to authenticate user on initial load.
+     */
     useEffect(() => {
         const checkAndUpdateToken = async () => {
             const token = Cookies.get('todoApp-authToken');
@@ -108,6 +161,10 @@ export const AuthProvider = ({ children }) => {
         checkAndUpdateToken();
     }, []);
 
+    /**
+     * The value provided to the context consumers.
+     * @type {AuthContextValue}
+     */
     const value = {
         currentUser,
         isLoggedIn,
@@ -117,5 +174,6 @@ export const AuthProvider = ({ children }) => {
         loading
     };
 
+    // Rendering the provider with the context value and children
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -5,6 +5,11 @@ import Signup from "../authentication/Signup";
 import { useTheme } from "@emotion/react";
 import { LogIn, UserRoundPlus } from "lucide-react";
 
+/**
+ * Renders the Authentication component consisting of 2 tabs: login and signup.
+ *
+ * @returns {JSX.Element} The rendered Authentication component.
+ */
 const Authentication = () => {
   const theme = useTheme();
   const [selectedTab, setSelectedTab] = useState(0);
