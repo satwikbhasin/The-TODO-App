@@ -133,6 +133,9 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
             ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
               color: theme.palette.secondary.text,
             },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },

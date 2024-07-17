@@ -65,7 +65,6 @@ const Login = () => {
         WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
         border: "1px solid rgba( 255, 255, 255, 0.18 )",
-        color: theme.palette.secondary.text,
       }}
     >
       <FormControl
@@ -87,6 +86,9 @@ const Login = () => {
           sx={{
             height: "20%",
             ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
               color: theme.palette.secondary.text,
             },
             "& .MuiInput-underline:before": {
@@ -131,6 +133,9 @@ const Login = () => {
           sx={{
             height: "20%",
             ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
               color: theme.palette.secondary.text,
             },
             "& .MuiInput-underline:before": {
