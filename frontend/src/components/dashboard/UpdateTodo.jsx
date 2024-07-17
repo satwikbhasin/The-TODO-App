@@ -82,7 +82,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
       >
         <Box>
           <Typography
-            variant="h6"
+            variant="heading"
             gutterBottom={true}
             display={"flex"}
             justifyContent={"center"}
@@ -93,7 +93,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
             Update Todo
           </Typography>
           <Typography
-            variant="body1"
+            variant="body2"
             gutterBottom={true}
             display={"flex"}
             justifyContent={"center"}
