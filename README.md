@@ -36,7 +36,6 @@ Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
 - **Deployment**
   - The frontend of the application is hosted on AWS S3 with CloudFront as the CDN. This setup ensures fast and reliable access to the application worldwide.
   - The backend is deployed on an AWS EC2 instance. This provides a scalable and reliable server environment for handling the application's backend services, including user authentication, data persistence, and serving RESTful API endpoints.
-  - The backend URL is securely stored in the environment variables (env file) for easier management and deployment.
 </details>
 
 <details>
@@ -113,4 +112,67 @@ Introduce features for setting task dependencies and reminders. Allow users to c
 `Voice Command Integration`
 
 Incorporate voice command capabilities for hands-free task management. Users can add, update, or delete todos using voice commands, enhancing accessibility and convenience.
+</details>
+
+
+<details>
+  <summary><h2>Project Architecture</h2></summary>
+  
+The project is structured into two main parts: a backend and a frontend, each serving distinct roles in the application's architecture.
+
+### Backend
+
+The backend is built with Django, a high-level Python web framework. It is structured into a main project directory (todoproject) and two applications: todos and users.
+
+- #### todoproject
+
+  This directory contains settings and configurations for the entire Django project, including database configurations, application settings, and URL routing for the project level.
+
+- #### todos
+
+  This application handles the creation, modification, and deletion of todo items. It includes models for defining the data structure, views for handling HTTP requests, serializers for JSON serialization of the todo items, and URLs for routing.
+
+- #### users
+
+  This application manages user authentication, registration, and user-specific data. Similar to todos, it includes models, views, serializers, and URLs for handling user-related functionalities.
+
+The backend uses Django's ORM for database interactions, with SQLite. Authentication is handled through Django Rest Framework for token-based authentication.
+
+### Frontend
+
+The frontend is a React application created with Create React App. It is structured into components, contexts, and utility functions.
+
+- #### Components
+
+  The UI is broken down into reusable components (Authentication, Dashboard, etc.), which are organized under the `src/components` directory. These components interact with the backend through HTTP requests to display and modify data.
+
+- #### Contexts
+
+  Authentication state is managed globally using React Context (`AuthContext`). This context maintains the authentication state (`isLoggedIn`, `currentUser`, etc.) and provides functions (`login`, `logout`, `signup`) to modify this state.
+
+- #### Utilities
+
+  Utility functions, such as those for handling cookies (`cookies.js`), for managing todos (`todos.js`) are used to decouple the methods from components.
+
+### Authentication Flow
+
+- #### Login/Signup
+
+  The user interacts with the `Authentication` component to log in or sign up. Upon successful authentication, the backend responds with a token (assuming token-based authentication) which is then stored in the browser in the cookies.
+
+- #### Storing Authentication State
+
+  The `AuthContext` maintains the authentication state across the application. It uses the token to make authenticated requests and to determine if the user is logged in.
+
+- #### Making Authenticated Calls
+
+  When the frontend needs to make an authenticated call to the backend (e.g., fetching todos), it includes the authentication token in the request headers. This token is retrieved from cookies and included in HTTP requests.
+
+### Environment Variables
+
+The frontend uses environment variables (e.g., `REACT_APP_BACKEND_API_URL`) to configure the backend URL, which is essential for making API calls to the correct server.
+
+### Routing
+
+The frontend uses React Router for navigation between different components (Dashboard, Authentication, NotFound), with routes defined in `AppRouter.jsx`. Access to certain routes is controlled based on the authentication state, redirecting users to the appropriate component based on whether they are logged in.
 </details>
