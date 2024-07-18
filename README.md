@@ -7,17 +7,23 @@ Since the assignment allowed me to build anything, I decided to create this todo
 Welcome to TODO Application. This project is a full-stack application, featuring a React-based frontend and a Django backend, providing a seamless and interactive user experience for managing todos.
 
 Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
+  
+<details>
+  <summary><h2>Features</h2></summary>
+  
+  - **User Authentication**: Secure login and registration functionality to keep your todos private.
+  - **Create, Read, Update, Delete (CRUD) Todos**: Full management of your todo tasks.
+  - **Light and Dark Mode**: Switch between light and dark themes to suit your preference.
+  - **Searching**: Easily find tasks by searching any keyword from the todo task.
+  - **Responsive Design**: A user-friendly interface that adapts to different screen sizes, ensuring a great experience on both desktop and mobile devices.
+  - **Progressive Web App (PWA)**: The frontend is designed as a PWA, allowing for an app-like experience on supported devices.
+</details>
 
-## Features
+  
+</details>
 
-- **User Authentication**: Secure login and registration functionality to keep your todos private.
-- **Create, Read, Update, Delete (CRUD) Todos**: Full management of your todo tasks.
-- **Light and Dark Mode**: Switch between light and dark themes to suit your preference.
-- **Searching**: Easily find tasks by searching any keyword from the todo task.
-- **Responsive Design**: A user-friendly interface that adapts to different screen sizes, ensuring a great experience on both desktop and mobile devices.
-- **Progressive Web App (PWA)**: The frontend is designed as a PWA, allowing for an app-like experience on supported devices.
-
-## Technology Stack
+<details>
+  <summary><h2>Tech Stack</h2></summary>
 
 - **Frontend**
 
@@ -31,8 +37,11 @@ Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
   - The frontend of the application is hosted on AWS S3 with CloudFront as the CDN. This setup ensures fast and reliable access to the application worldwide.
   - The backend is deployed on an AWS EC2 instance. This provides a scalable and reliable server environment for handling the application's backend services, including user authentication, data persistence, and serving RESTful API endpoints.
   - The backend URL is securely stored in the environment variables (env file) for easier management and deployment.
+</details>
 
-## Detailed Key Features
+<details>
+  <summary><h2>Detailed Key Features</h2></summary>
+  
 Below are some features that make this app robust and appealing.
 
 `Dashboard Synchronization / Real-time Updates`
@@ -66,8 +75,11 @@ The application includes features for displaying statistics related to the user'
 `Error Handling and Validation`
 
 Robust error handling and validation mechanisms ensure that the application operates smoothly. Users receive clear feedback in case of errors or invalid input, enhancing the overall user experience.
+</details>
 
-## Future Enhancements
+<details>
+  <summary><h2>Future Enhancements</h2></summary>
+
 When I start a project, I always develop keeping its future in mind. For this one, Below are some ideas I have in mind.
 
 `Customizable Themes`
@@ -101,3 +113,4 @@ Introduce features for setting task dependencies and reminders. Allow users to c
 `Voice Command Integration`
 
 Incorporate voice command capabilities for hands-free task management. Users can add, update, or delete todos using voice commands, enhancing accessibility and convenience.
+</details>
