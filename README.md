@@ -25,15 +25,15 @@ Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
 <details>
   <summary><h2>Tech Stack</h2></summary>
 
-- **Frontend**
+### Frontend
 
   The frontend is built with React, utilizing Create React App for scaffolding. Styling is achieved with Emotion Styled Components and Material-UI for a modern look and feel.
   
-- **Backend**
+### Backend
 
   The backend is powered by Django, a high-level Python web framework that encourages rapid development and clean, pragmatic design. It handles user authentication, data persistence in SQLite, and serves the RESTful API endpoints for the frontend.
   
-- **Deployment**
+### Deployment
   - The frontend of the application is hosted on AWS S3 with CloudFront as the CDN. This setup ensures fast and reliable access to the application worldwide.
   - The backend is deployed on an AWS EC2 instance. This provides a scalable and reliable server environment for handling the application's backend services, including user authentication, data persistence, and serving RESTful API endpoints.
 </details>
@@ -41,37 +41,35 @@ Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
 <details>
   <summary><h2>Detailed Key Features</h2></summary>
   
-Below are some features that make this app robust and appealing.
-
-`Dashboard Synchronization / Real-time Updates`
+### Dashboard Synchronization / Real-time Updates
 
 The Dashboard component ensures seamless synchronization every time a todo item is created, updated, or deleted. The `NewTodo` and `UpdateTodo` components handle these changes and invoke callback functions like `refreshAllTodos` and `refreshStats`. These functions use refs to trigger a rerender in the `AllTodos` and `TodoStats` components, ensuring the Dashboard always displays the most current data for a dynamic and responsive user experience.
 
-`Light & Dark Mode`
+### Light & Dark Mode
 
 Users can switch between light and dark themes to suit their preference, enhancing the usability and visual appeal of the application. The design is scalable, allowing for the addition of numerous themes in the future.
 
-`User Authentication`
+### User Authentication
 
 Secure login and registration functionality to keep your todos private. The application uses token-based authentication to ensure that only authorized users can access their todos. 
 
-`Create, Read, Update, Delete (CRUD) Todos`
+### Create, Read, Update, Delete (CRUD) Todos
 
 Full management of your todo tasks. Users can create new todos, view all their existing todos, update the details of their todos, and delete todos they no longer need. The CRUD operations are implemented with RESTful API endpoints, ensuring a smooth and efficient user experience.
 
-`Searching`
+### Searching
 
 Easily find tasks by searching any keyword from the todo task. The search functionality allows users to quickly locate specific todos by entering relevant keywords, improving the usability and efficiency of the application.
 
-`Responsive Design`
+### Responsive Design
 
 A user-friendly interface that adapts to different screen sizes, ensuring a great experience on both desktop and mobile devices. The responsive design ensures that users can manage their todos comfortably, regardless of the device they are using.
 
-`Statistics`
+### Statistics
 
 The application includes features for displaying statistics related to the user's todos. This helps users track their productivity and manage their tasks more effectively.
   
-`Error Handling and Validation`
+### Error Handling and Validation
 
 Robust error handling and validation mechanisms ensure that the application operates smoothly. Users receive clear feedback in case of errors or invalid input, enhancing the overall user experience.
 </details>
@@ -81,35 +79,35 @@ Robust error handling and validation mechanisms ensure that the application oper
 
 When I start a project, I always develop keeping its future in mind. For this one, Below are some ideas I have in mind.
 
-`Customizable Themes`
+### Customizable Themes
 
 Expand the theme options beyond light and dark mode to include customizable color schemes. Allow users to personalize their interface according to their preferences.
 
-`Collaborative Features` 
+### Collaborative Features
 
 Introduce collaboration capabilities where users can share and work on todos together with team members or collaborators. This could include real-time updates and shared task lists.
 
-`Notification System` 
+### Notification System
 
 Implement a notification system to alert users about upcoming deadlines, completed tasks, or changes made by collaborators. Integration with push notifications can enhance user engagement and productivity.
 
-`Integration with Calendar Services` 
+### Integration with Calendar Services
 
 Enable synchronization with popular calendar services (e.g., Google Calendar, Outlook) to automatically populate tasks and deadlines into users' calendars. This integration simplifies planning and time management.
 
-`Advanced Analytics` 
+### Advanced Analytics
 
 Enhance the statistics and analytics section with predictive analytics and data visualization. Provide insights into task completion rates, productivity trends, and suggestions for optimizing task management.
 
-`Offline Access` 
+### Offline Access 
 
 Further enhance the PWA capabilities by enabling offline access to todos. Implement offline storage and synchronization so users can continue managing tasks even without an internet connection.
 
-`Task Dependencies and Reminders` 
+### Task Dependencies and Reminders
 
 Introduce features for setting task dependencies and reminders. Allow users to create sequential tasks that automatically update based on completion status and send reminders for upcoming deadlines.
 
-`Voice Command Integration`
+### Voice Command Integration
 
 Incorporate voice command capabilities for hands-free task management. Users can add, update, or delete todos using voice commands, enhancing accessibility and convenience.
 </details>
@@ -118,7 +116,7 @@ Incorporate voice command capabilities for hands-free task management. Users can
 <details>
   <summary><h2>Project Architecture</h2></summary>
   
-The project is structured into two main parts: a backend and a frontend, each serving distinct roles in the application's architecture.
+The project is structured into two main parts: a backend and a frontend.
 
 ### Backend
 
@@ -175,4 +173,58 @@ The frontend uses environment variables (e.g., `REACT_APP_BACKEND_API_URL`) to c
 ### Routing
 
 The frontend uses React Router for navigation between different components (Dashboard, Authentication, NotFound), with routes defined in `AppRouter.jsx`. Access to certain routes is controlled based on the authentication state, redirecting users to the appropriate component based on whether they are logged in.
+</details>
+
+
+<details>
+  <summary><h2>Deployment Process</h2></summary>
+
+  ### Backend
+
+1. **Deploy on EC2**: 
+   - Pulled the latest version of the backend code from the Git repository to an AWS EC2 instance.
+
+2. **Run Django Server with Gunicorn**: 
+   - Used Gunicorn to serve the Django application in the background using `&`. This can be done with a command like:
+     ```bash
+     gunicorn --workers 3 todoproject.wsgi:application &
+     ```
+
+3. **Set Up Nginx as a Reverse Proxy**: 
+   - Configured Nginx to forward requests to the Gunicorn server. This provides an additional layer of security and handles static files.
+   - Example Nginx configuration:
+     ```nginx
+     server {
+         listen 80;
+         server_name ec2-18-205-27-184.compute-1.amazonaws.com;
+
+         location / {
+             proxy_pass http://127.0.0.1:8000;
+             proxy_set_header Host $host;
+             proxy_set_header X-Real-IP $remote_addr;
+             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+             proxy_set_header X-Forwarded-Proto $scheme;
+         }
+
+         location /static/ {
+             alias /path/to/static/;
+         }
+
+         location /media/ {
+             alias /path/to/media/;
+         }
+     }
+     ```
+
+### Frontend
+
+1. **Build the React App**: 
+   - Created a production build of the React application locally using `npm run build`.
+
+2. **Upload to S3**: 
+   - Uploaded the build directory to an AWS S3 bucket configured to host static websites.
+
+3. **Set Up CloudFront**: 
+   - Configured CloudFront to use the S3 bucket as the origin.
+   - Rewrited redirection rules for the bucket to handle client-side routing properly.
 </details>
