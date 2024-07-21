@@ -10,6 +10,14 @@ import { CheckCheckIcon, LogOut } from "lucide-react";
 import { useTheme } from "@emotion/react";
 import { useAuth } from "../../AuthContext";
 
+/**
+ * Represents the navigation bar component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.toggleTheme - The callback function to toggle the theme.
+ * @returns {JSX.Element} The JSX element representing the navigation bar.
+ */
 const Navbar = ({ toggleTheme }) => {
   const { logout, isLoggedIn, currentUser } = useAuth();
   const theme = useTheme();
@@ -34,7 +42,10 @@ const Navbar = ({ toggleTheme }) => {
           gap={1}
         >
           <CheckCheckIcon color={theme.palette.secondary.icons} />
-          <Typography variant="h6" sx={{ color: theme.palette.secondary.text }}>
+          <Typography
+            variant="heading"
+            sx={{ color: theme.palette.secondary.heading }}
+          >
             TODO
           </Typography>
           <Switch
@@ -55,17 +66,20 @@ const Navbar = ({ toggleTheme }) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                color: theme.palette.secondary.text,
+                color: theme.palette.secondary.heading,
               }}
               gap={1}
             >
-              <Typography variant="body1" sx={{ cursor: "default" }}>
+              <Typography variant="heading" sx={{ cursor: "default" }}>
                 {currentUser.username}
               </Typography>
               <IconButton
                 variant="contained"
                 onClick={handleLogout}
-                sx={{ textTransform: "none" }}
+                sx={{
+                  textTransform: "none",
+                  color: theme.palette.secondary.icons,
+                }}
               >
                 <LogOut />
               </IconButton>

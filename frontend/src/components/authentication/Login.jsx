@@ -12,6 +12,12 @@ import { useAuth } from "../../AuthContext";
 import { useTheme } from "@emotion/react";
 import { Eye, EyeOff } from "lucide-react";
 
+/**
+ * Renders a login component with username and password fields.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered login component.
+ */
 const Login = () => {
   const { login } = useAuth();
   const theme = useTheme();
@@ -56,15 +62,15 @@ const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
         flexDirection: "column",
         width: { xs: "70%", md: "40%" },
         height: "40%",
         padding: "20px",
-        borderRadius: "30px",
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.text,
+        background: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+        borderRadius: "10px",
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
       }}
     >
       <FormControl
@@ -85,6 +91,12 @@ const Login = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -111,12 +123,12 @@ const Login = () => {
           onChange={handleChange}
           InputProps={{
             endAdornment: (
-              <InputAdornment position="end">
+              <InputAdornment position="start">
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={togglePasswordVisibility}
                   edge="end"
-                  sx={{ paddingRight: "48%", color: theme.palette.secondary.text }}
+                  sx={{ color: theme.palette.secondary.text }}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </IconButton>
@@ -126,6 +138,12 @@ const Login = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -143,7 +161,11 @@ const Login = () => {
             },
           }}
         />
-        <Button type="submit" variant="contained" sx={{ mt: 3 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ mt: 3, fontFamily: theme.typography.body1 }}
+        >
           Login
         </Button>
         <Box sx={{ display: "flex", justifyContent: "center", height: "10px" }}>

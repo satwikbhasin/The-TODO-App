@@ -1,5 +1,17 @@
+/**
+ * @file This file defines light and dark theme configurations for the application using Material-UI.
+ */
+
 import { createTheme } from '@mui/material/styles';
 
+
+/**
+ * Dynamically generates styles for switch components based on the current theme mode (light or dark).
+ * It includes common styles, checked state styles, and custom thumb styles with SVG backgrounds.
+ * 
+ * @param {string} mode - The current theme mode ('light' or 'dark').
+ * @returns {object} - The switch styles object.
+ */
 const themeSwitch = (mode) => {
     const commonStyles = {
         "&:hover": {
@@ -39,6 +51,13 @@ const themeSwitch = (mode) => {
     };
 };
 
+/**
+ * Generates styles for button components based on the current theme mode (light or dark).
+ * It customizes the root style including the default and hover state colors.
+ * 
+ * @param {string} mode - The current theme mode ('light' or 'dark').
+ * @returns {object} - The button styles object.
+ */
 const genericButton = (mode) => {
     return {
         root: {
@@ -51,6 +70,12 @@ const genericButton = (mode) => {
     };
 }
 
+/**
+ * Creates a light theme for the application using MUI's createTheme.
+ * It defines the color palette, typography, and component overrides for the light mode.
+ * 
+ * @type {object}
+ */
 const lightTheme = createTheme({
     palette: {
         mode: 'light',
@@ -59,13 +84,29 @@ const lightTheme = createTheme({
         },
         secondary: {
             main: '#c9c5b1',
-            text: '#0C0C0C',
+            heading: '#0C0C0C',
+            text: '#E2DFD2',
             icons: "#F2613F",
             misc: '#D84A05',
         },
+        background: {
+            main: 'linear-gradient(196deg, rgba(110,41,13,0.9542410714285714) -15%, rgba(114,114,114,1) 100%)',
+            glassmorphism: "rgba( 0, 0, 0, 0.15 )"
+        }
     },
     typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
+        heading: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 18,
+        },
+        body1: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 13,
+        },
+        body2: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 11,
+        }
     },
     components: {
         MuiSwitch: {
@@ -77,6 +118,12 @@ const lightTheme = createTheme({
     },
 });
 
+/**
+ * Creates a dark theme for the application using MUI's createTheme.
+ * It defines the color palette, typography, and component overrides for the dark mode.
+ * 
+ * @type {object}
+ */
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
@@ -85,13 +132,29 @@ const darkTheme = createTheme({
         },
         secondary: {
             main: '#1e1e1e',
+            heading: '#E2DFD2',
             text: '#E2DFD2',
             icons: "#F2613F",
             misc: '#D84A05',
         },
+        background: {
+            main: 'linear-gradient(196deg, rgba(110,41,13,0.9542410714285714) 0%, rgba(12,12,12,1) 74%)',
+            glassmorphism: "rgba(255, 255, 255, 0.12)"
+        },
     },
     typography: {
-        fontFamily: 'Roboto, Arial, sans-serif',
+        heading: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 18,
+        },
+        body1: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 13,
+        },
+        body2: {
+            fontFamily: 'Kode Mono, monospace',
+            fontSize: 11,
+        }
     },
     components: {
         MuiSwitch: {

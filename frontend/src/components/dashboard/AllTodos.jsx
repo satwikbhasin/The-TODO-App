@@ -20,9 +20,19 @@ import {
   CheckCheck,
   RefreshCcw,
   ChevronRight,
+  Search,
 } from "lucide-react";
 import { getAllTodos } from "../../methods/todos";
 
+/**
+ * Renders a component that displays a list of todos with search functionality and refresh button.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Function} props.onSelect - The callback function to be called when a todo is selected.
+ * @param {React.Ref} ref - The ref object used to expose the `fetchTodos` function.
+ * @returns {JSX.Element} The rendered component.
+ */
 const AllTodos = forwardRef(({ onSelect }, ref) => {
   const theme = useTheme();
   const [searchTerm, setSearchTerm] = useState("");
@@ -68,8 +78,11 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
   return (
     <Box
       sx={{
+        background: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
-        backgroundColor: theme.palette.secondary.main,
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
         padding: "15px",
         display: "flex",
@@ -87,7 +100,12 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
         }}
       >
         <Box flexGrow={1} display="flex" justifyContent="center">
-          <Typography variant="h6" display="flex" alignItems="center" gap={1}>
+          <Typography
+            fontFamily={theme.typography.heading}
+            display="flex"
+            alignItems="center"
+            gap={1}
+          >
             <ListIcon size={24} color={theme.palette.secondary.icons} /> All
           </Typography>
         </Box>
@@ -103,13 +121,47 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
       </Box>
       <Box>
         <TextField
+          label={
+            <Box display="flex" alignItems="center" gap={1}>
+              <Search size={20} />
+              <Typography
+                fontFamily={theme.typography.body1}
+                sx={{ color: theme.palette.secondary.text }}
+              >
+                Search Todos
+              </Typography>
+            </Box>
+          }
           fullWidth
-          variant="outlined"
-          placeholder="Search Todos"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          sx={{ marginBottom: "15px" }}
           disabled={todos.length === 0}
+          value={searchTerm}
+          variant="standard"
+          onChange={handleSearchChange}
+          sx={{
+            height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
+            "& .MuiInput-underline:before": {
+              borderBottomColor: theme.palette.secondary.text,
+            },
+            "&:hover .MuiInput-underline:before": {
+              borderBottomColor: theme.palette.secondary.misc,
+            },
+            "& .MuiInput-underline:after": {
+              borderBottomColor: theme.palette.secondary.misc,
+            },
+            "& .MuiInputLabel-root": {
+              color: theme.palette.secondary.text,
+              "&.Mui-focused": {
+                color: theme.palette.secondary.text,
+              },
+            },
+            marginBottom: "5px",
+          }}
         />
       </Box>
       <Box
@@ -122,6 +174,7 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
         <List>
           {filteredTodos.map((todo, index) => (
             <Box
+              key={index}
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -130,7 +183,6 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
             >
               <ChevronRight size={19} color={theme.palette.secondary.icons} />
               <ListItem
-                key={index}
                 onClick={() => handleSelect(todo)}
                 sx={{
                   gap: 1,
@@ -140,14 +192,21 @@ const AllTodos = forwardRef(({ onSelect }, ref) => {
                   sx={{
                     backgroundColor:
                       selectedTodo === todo
-                        ? theme.palette.primary.main
+                        ? theme.palette.secondary.main
                         : "transparent",
+                    color:
+                      selectedTodo === todo
+                        ? theme.palette.secondary.heading
+                        : theme.palette.secondary.text,
                     textTransform: "none",
                     justifyContent: "left",
                     width: "100%",
                   }}
                 >
-                  <Typography variant="body1" sx={{ whiteSpace: "nowrap" }}>
+                  <Typography
+                    fontFamily={theme.typography.body1}
+                    sx={{ whiteSpace: "nowrap" }}
+                  >
                     {todo.title.length > 20
                       ? `${todo.title.substring(0, 30)}...`
                       : todo.title}

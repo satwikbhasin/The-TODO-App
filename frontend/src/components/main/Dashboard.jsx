@@ -5,6 +5,13 @@ import AddTodo from "../dashboard/NewTodo";
 import TodoStats from "../dashboard/TodoStats";
 import UpdateTodo from "../dashboard/UpdateTodo";
 
+/**
+ * Dashboard component represents the main dashboard of the application.
+ * It displays a list of todos, todo statistics, and provides functionality to add, update, and delete todos.
+ *
+ * @component
+ * @returns {JSX.Element} The JSX element representing the dashboard.
+ */
 const Dashboard = () => {
   const [selectedTodo, setSelectedTodo] = useState(null);
   const allTodosRef = useRef(null);
@@ -47,7 +54,7 @@ const Dashboard = () => {
         marginBottom: { xs: "20px", md: "40px" },
         gap: { xs: 5, md: 10 },
         width: "100%",
-        height: { xs: "auto", md: "80vh" },
+        height: { xs: "auto", md: "max-content" },
       }}
     >
       <Box
@@ -64,22 +71,27 @@ const Dashboard = () => {
       </Box>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: { xs: 4 },
           width: { xs: "80%", md: "40%" },
-          height: "100%",
         }}
       >
-        <AddTodo callbacks={callbacks} />
-        <TodoStats ref={statsRef} />
-        <UpdateTodo
-          selectedTodo={selectedTodo}
-          callbacks={callbacks}
-          handleUpdateOrDeleteTodo={handleUpdateOrDeleteTodo}
-        />
+        <Box
+          sx={{
+            display: "flex",
+            gap: { xs: 4 },
+            flexDirection: { xs: "column-reverse", md: "column" },
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <AddTodo callbacks={callbacks} />
+          <TodoStats ref={statsRef} />
+          <UpdateTodo
+            selectedTodo={selectedTodo}
+            callbacks={callbacks}
+            handleUpdateOrDeleteTodo={handleUpdateOrDeleteTodo}
+          />
+        </Box>
       </Box>
     </Container>
   );

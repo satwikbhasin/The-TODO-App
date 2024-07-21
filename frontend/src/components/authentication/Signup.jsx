@@ -3,6 +3,12 @@ import { Box, TextField, Button, Typography, FormControl } from "@mui/material";
 import { useAuth } from "../../AuthContext";
 import { useTheme } from "@emotion/react";
 
+/**
+ * Renders a signup component with username, password, and confirm password fields.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered signup component.
+ */
 const Signup = () => {
   const { signup } = useAuth();
   const theme = useTheme();
@@ -53,15 +59,16 @@ const Signup = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        boxShadow:
-          "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
+        background: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+        borderRadius: "10px",
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
+        color: theme.palette.secondary.text,
         flexDirection: "column",
         width: { xs: "70%", md: "40%" },
         height: "40%",
         padding: "20px",
-        borderRadius: "30px",
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.text,
       }}
     >
       <FormControl
@@ -82,6 +89,12 @@ const Signup = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -109,6 +122,12 @@ const Signup = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -136,6 +155,12 @@ const Signup = () => {
           required
           sx={{
             height: "20%",
+            ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              color: theme.palette.secondary.text,
+            },
+            ".css-mnn31": {
+              color: theme.palette.secondary.text,
+            },
             "& .MuiInput-underline:before": {
               borderBottomColor: theme.palette.secondary.text,
             },
@@ -156,7 +181,7 @@ const Signup = () => {
         <Button
           type="submit"
           variant="contained"
-          sx={{ mt: 3 }}
+          sx={{ mt: 3, fontFamily: theme.typography.body1 }}
           disabled={loading}
         >
           Sign Up

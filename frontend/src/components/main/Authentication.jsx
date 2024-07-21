@@ -5,6 +5,11 @@ import Signup from "../authentication/Signup";
 import { useTheme } from "@emotion/react";
 import { LogIn, UserRoundPlus } from "lucide-react";
 
+/**
+ * Renders the Authentication component consisting of 2 tabs: login and signup.
+ *
+ * @returns {JSX.Element} The rendered Authentication component.
+ */
 const Authentication = () => {
   const theme = useTheme();
   const [selectedTab, setSelectedTab] = useState(0);
@@ -21,42 +26,40 @@ const Authentication = () => {
         alignItems: "center",
         flexDirection: "column",
         width: "100%",
-        height: "100%",
+        height: "100vh",
+        gap: "20px",
       }}
     >
       <Tabs
         value={selectedTab}
         onChange={handleChange}
         aria-label="auth tabs"
-        textColor={theme.palette.primary.main}
         centered
+        indicatorColor="transparent"
+        textColor={theme.palette.secondary.text}
         sx={{
-          backgroundColor: theme.palette.secondary.text,
-          color: theme.palette.secondary.main,
-          borderTopLeftRadius: "10px",
-          borderTopRightRadius: "10px",
-          boxShadow:
-            "0 -1px 8px rgba(242, 97, 63, 0.5), 1px 0 8px rgba(242, 97, 63, 0.5)",
+          ".MuiTab-root": {
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            borderRadius: "10px",
+            border: "1px solid rgba( 255, 255, 255, 0.18 )",
+            "&.Mui-selected": {
+              background: theme.palette.background.glassmorphism,
+            },
+            "&:not(.Mui-selected)": {
+              background: "transparent",
+              border: "transparent",
+            },
+          },
         }}
-        indicatorColor={theme.palette.primary.main}
       >
         <Tab
-          sx={{
-            backgroundColor:
-              selectedTab === 0
-                ? theme.palette.secondary.main
-                : theme.palette.primary.main,
-            color:
-              selectedTab === 0
-                ? theme.palette.secondary.text
-                : theme.palette.secondary.text,
-            gap: "5px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "row",
-          }}
           label="Login"
+          sx={{
+            color: theme.palette.secondary.text,
+            fontFamily: theme.typography.body1,
+          }}
+          iconPosition="start"
           icon={
             <LogIn
               size={18}
@@ -69,22 +72,12 @@ const Authentication = () => {
           }
         />
         <Tab
-          sx={{
-            backgroundColor:
-              selectedTab === 1
-                ? theme.palette.secondary.main
-                : theme.palette.primary.main,
-            color:
-              selectedTab === 1
-                ? theme.palette.secondary.text
-                : theme.palette.secondary.text,
-            gap: "5px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "row",
-          }}
           label="Sign Up"
+          sx={{
+            color: theme.palette.secondary.text,
+            fontFamily: theme.typography.body1,
+          }}
+          iconPosition="start"
           icon={
             <UserRoundPlus
               size={18}

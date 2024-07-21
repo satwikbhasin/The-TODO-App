@@ -10,6 +10,14 @@ import { useTheme } from "@emotion/react";
 import { BarChart2, Sigma, CheckCheck, CircleSlash } from "lucide-react";
 import { getTodoStats } from "../../methods/todos";
 
+/**
+ * Represents a component for displaying statistics of todo items.
+ *
+ * @component
+ * @param {Object} props - The props object containing the component's properties.
+ * @param {React.Ref} ref - The ref object used to expose the fetchStats function.
+ * @returns {JSX.Element} The JSX element representing the TodoStats component.
+ */
 const TodoStats = forwardRef((props, ref) => {
   const theme = useTheme();
   const [stats, setStats] = useState({ total: 0, completed: 0, incomplete: 0 });
@@ -35,8 +43,11 @@ const TodoStats = forwardRef((props, ref) => {
     <Box
       sx={{
         padding: "15px",
+        backgroundColor: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
-        backgroundColor: theme.palette.secondary.main,
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
         width: "100%",
         display: "flex",
@@ -44,7 +55,7 @@ const TodoStats = forwardRef((props, ref) => {
       }}
     >
       <Typography
-        variant="h6"
+        variant="heading"
         gutterBottom={true}
         display={"flex"}
         justifyContent={"center"}
@@ -64,7 +75,7 @@ const TodoStats = forwardRef((props, ref) => {
         }}
       >
         <Typography
-          variant="body1"
+          variant="body2"
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -74,7 +85,7 @@ const TodoStats = forwardRef((props, ref) => {
           Total = {stats.total}
         </Typography>
         <Typography
-          variant="body1"
+          variant="body2"
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
@@ -84,7 +95,7 @@ const TodoStats = forwardRef((props, ref) => {
           Completed = {stats.completed}
         </Typography>
         <Typography
-          variant="body1"
+          variant="body2"
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}

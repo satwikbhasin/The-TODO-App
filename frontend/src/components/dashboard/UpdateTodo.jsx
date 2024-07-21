@@ -12,6 +12,15 @@ import { useTheme } from "@mui/material/styles";
 import { PencilLine, Trash, FilePenLine } from "lucide-react";
 import { updateTodo, deleteTodo } from "../../methods/todos";
 
+/**
+ * UpdateTodo component is responsible for rendering a form to update or delete a selected todo.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.selectedTodo - The selected todo object.
+ * @param {Object} props.callbacks - The callback functions for handling updates and deletions.
+ * @returns {JSX.Element} The rendered UpdateTodo component.
+ */
 const UpdateTodo = ({ selectedTodo, callbacks }) => {
   const { refreshAllTodos, refreshStats, handleUpdateOrDeleteTodo } = callbacks;
   const theme = useTheme();
@@ -68,8 +77,11 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
     return (
       <Box
         sx={{
+          backgroundColor: theme.palette.background.glassmorphism,
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+          border: "1px solid rgba( 255, 255, 255, 0.18 )",
           borderRadius: "10px",
-          backgroundColor: theme.palette.secondary.main,
           color: theme.palette.secondary.text,
           padding: "15px",
           width: "100%",
@@ -79,7 +91,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
       >
         <Box>
           <Typography
-            variant="h6"
+            variant="heading"
             gutterBottom={true}
             display={"flex"}
             justifyContent={"center"}
@@ -90,12 +102,12 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
             Update Todo
           </Typography>
           <Typography
-            variant="body1"
+            variant="body2"
             gutterBottom={true}
             display={"flex"}
             justifyContent={"center"}
           >
-            Please select a todo from the left menu
+            Please select a todo from all todos
           </Typography>
         </Box>
       </Box>
@@ -105,8 +117,11 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
   return (
     <Box
       sx={{
+        backgroundColor: theme.palette.background.glassmorphism,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
         borderRadius: "10px",
-        backgroundColor: theme.palette.secondary.main,
+        border: "1px solid rgba( 255, 255, 255, 0.18 )",
         color: theme.palette.secondary.text,
         padding: "15px",
         width: "100%",
@@ -116,7 +131,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
       }}
     >
       <Typography
-        variant="h6"
+        variant="heading"
         gutterBottom={true}
         display={"flex"}
         justifyContent={"center"}
@@ -146,22 +161,26 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
             <TextField
               label="New Title"
               name="title"
+              fullWidth
               value={updatedTodo.title}
               onChange={handleChange}
-              fullWidth
-              margin="normal"
+              variant="standard"
               sx={{
-                flex: 2,
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: theme.palette.secondary.misc,
-                  },
-                  "&:hover fieldset": {
-                    borderColor: theme.palette.secondary.misc,
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: theme.palette.secondary.misc,
-                  },
+                height: "20%",
+                ".css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+                  color: theme.palette.secondary.text,
+                },
+                ".css-mnn31": {
+                  color: theme.palette.secondary.text,
+                },
+                "& .MuiInput-underline:before": {
+                  borderBottomColor: theme.palette.secondary.text,
+                },
+                "&:hover .MuiInput-underline:before": {
+                  borderBottomColor: theme.palette.secondary.misc,
+                },
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: theme.palette.secondary.misc,
                 },
                 "& .MuiInputLabel-root": {
                   color: theme.palette.secondary.text,
@@ -169,6 +188,7 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
                     color: theme.palette.secondary.text,
                   },
                 },
+                marginBottom: "10%",
               }}
             />
             <FormControlLabel
@@ -211,8 +231,9 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
               sx={{
                 flex: 1,
                 backgroundColor: theme.palette.primary.main,
-                color: theme.palette.secondary.text,
+                color: theme.palette.secondary.heading,
                 width: "50%",
+                fontFamily: theme.typography.body1,
               }}
               startIcon={
                 <FilePenLine size={20} color={theme.palette.secondary.icons} />
@@ -228,8 +249,9 @@ const UpdateTodo = ({ selectedTodo, callbacks }) => {
               sx={{
                 flex: 1,
                 backgroundColor: theme.palette.primary.main,
-                color: theme.palette.secondary.text,
+                color: theme.palette.secondary.heading,
                 width: "50%",
+                fontFamily: theme.typography.body1,
               }}
               startIcon={
                 <Trash size={20} color={theme.palette.secondary.icons} />

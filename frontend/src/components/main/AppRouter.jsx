@@ -9,6 +9,11 @@ import { Box } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import NotFound from "./NotFound";
 
+/**
+ * Renders the main application router.
+ *
+ * @returns {JSX.Element} The rendered AppRouter component.
+ */
 const AppRouter = () => {
   const { isLoggedIn, loading } = useAuth();
   const theme = useTheme();
@@ -16,17 +21,17 @@ const AppRouter = () => {
   if (loading) {
     return (
       <Box
-        style={{
+        sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100%",
+          height: "100vh",
         }}
       >
         <CircleDashed
           size={48}
           style={{ animation: "spin 5s linear infinite" }}
-          color={theme.palette.secondary.misc}
+          color={theme.palette.secondary.text}
         />
       </Box>
     );

@@ -8,10 +8,17 @@ import { Container } from '@mui/material';
 import Navbar from './components/main/Navbar';
 import AppRouter from './components/main/AppRouter';
 
+/**
+ * Main application component.
+ * @returns {JSX.Element} The rendered App component.
+ */
 const App = () => {
     const initialTheme = getThemeFromCookie();
     const [isDarkMode, setIsDarkMode] = useState(initialTheme === 'dark');
 
+    /**
+     * Function to toggle theme mode and update cookie.
+     */
     const toggleTheme = () => {
         const newTheme = isDarkMode ? 'light' : 'dark';
         setThemeInCookie(newTheme);
@@ -19,24 +26,26 @@ const App = () => {
     };
 
     return (
-        <AuthProvider>
-            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-                <Router>
+        <AuthProvider>  {/* Provides authentication context */}
+            <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}> {/* Applies the current theme */}
+                <Router>    {/* Router component for handling navigation */}
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
                         width: '100vw',
-                        height: '100vh',
-                        backgroundColor: isDarkMode ? darkTheme.palette.primary.main : lightTheme.palette.primary.main,
+                        height: { xs: '100vh', md: '100vh' },
+                        background: isDarkMode
+                            ? darkTheme.palette.background.main
+                            : lightTheme.palette.background.main,
                     }}>
-                        <Navbar toggleTheme={toggleTheme} />
+                        <Navbar toggleTheme={toggleTheme} />    {/* Navbar with theme toggle callback function */}
                         <Container sx={{
                             flexGrow: 1,
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}>
-                            <AppRouter />
+                            <AppRouter />   {/* Component for rendering the current route */}
                         </Container>
                     </div>
                 </Router>
