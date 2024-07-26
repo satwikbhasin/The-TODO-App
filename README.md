@@ -1,7 +1,3 @@
-# roulettech-assignment
-
-Since the assignment allowed me to build anything, I decided to create this todo list management app.
-
 # TODO Application
 
 Welcome to TODO Application. This project is a full-stack application, featuring a React-based frontend and a Django backend, providing a seamless and interactive user experience for managing todos.
