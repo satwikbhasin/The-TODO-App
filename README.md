@@ -1,6 +1,6 @@
-# TODO Application
+# Welcome to The TODO App
 
-Welcome to The TODO App. This project is a full-stack application, featuring a React-based frontend and a Django backend, providing a seamless and interactive user experience for managing todos.
+This project is a full-stack application, featuring a React-based frontend and a Django backend, providing a seamless and interactive user experience for managing todos.
 
 Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
 
