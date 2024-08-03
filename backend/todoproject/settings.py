@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "18.205.27.184",
-    "ec2-18-205-27-184.compute-1.amazonaws.com",
+    "ec2-3-84-120-33.compute-1.amazonaws.com",
 ]
 
 # Application definition
