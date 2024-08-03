@@ -1,3 +1,5 @@
+***Note:*** *Currently the deployment is down to avoid AWS charges*
+
 # Welcome to The TODO App
 
 This project is a full-stack application, featuring a React-based frontend and a Django backend, providing a seamless and interactive user experience for managing todos.
