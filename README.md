@@ -4,8 +4,6 @@
 
 This project is a full-stack application, featuring a React-based frontend and a Django backend, providing a seamless and interactive user experience for managing todos.
 
-Check it out [here](http://d12eo7gxjc1eku.cloudfront.net)
-
 ## Features
 
 - **User Authentication**: Secure login and registration functionality to keep your todos private.
