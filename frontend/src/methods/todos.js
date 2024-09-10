@@ -2,121 +2,63 @@
  * @file This file defines the API methods used to interact with the backend todos API.
  */
 
-import Cookies from 'js-cookie';
-
-const backendUrl = process.env.REACT_APP_BACKEND_API_URL;
-const authToken = `Token ${Cookies.get('todoApp-authToken')}`;
+import todos from "../components/dashboard/todos.json";
 
 /**
- * Retrieves all todos from the backend API.
+ * Retrieves all todos from the local JSON file.
  * @returns {Promise<Array>} A promise that resolves to an array of todos.
- * @throws {Error} If the request fails or the response is not successful.
  */
 export const getAllTodos = async () => {
-    try {
-        const response = await fetch(backendUrl + 'todos/', {
-            method: 'GET',
-            headers: {
-                'Authorization': authToken,
-            },
-        });
-        if (!response.ok) {
-            throw new Error(response);
-        }
-        const todos = await response.json();
-        return todos;
-    } catch (error) {
-        throw new Error('Failed to fetch todos:', error);
-    }
+    return todos;
 };
 
 /**
- * Adds a new todo to the backend API.
+ * Adds a new todo to the local JSON file.
  * @param {Object} todo - The todo object to be added.
- * @throws {Error} If the request fails or the response is not successful.
+ * @returns {Promise<void>}
  */
 export const addTodo = async (todo) => {
-    try {
-        const response = await fetch(backendUrl + 'todos/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': authToken,
-            },
-            body: JSON.stringify(todo),
-        });
-        if (!response.ok) {
-            throw new Error(response);
-        }
-    } catch (error) {
-        throw new Error('Failed to add todo:', error);
-    }
+    todo.id = todos.length ? todos[todos.length - 1].id + 1 : 1;
+    todos.push(todo);
 };
 
 /**
- * Deletes a todo from the backend API.
+ * Deletes a todo from the local JSON file.
  * @param {string} id - The ID of the todo to be deleted.
- * @throws {Error} If the request fails or the response is not successful.
+ * @returns {Promise<void>}
  */
 export const deleteTodo = async (id) => {
-    try {
-        const response = await fetch(backendUrl + `todos/${id}/`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': authToken,
-            }
-        });
-        if (!response.ok) {
-            throw new Error(response);
-        }
-    } catch (error) {
-        throw new Error('Failed to delete todo:', error);
+    const index = todos.findIndex(todo => todo.id === parseInt(id));
+    if (index !== -1) {
+        todos.splice(index, 1);
     }
 };
 
 /**
- * Updates a todo in the backend API.
+ * Updates a todo in the local JSON file.
  * @param {string} id - The ID of the todo to be updated.
  * @param {Object} updatedTodo - The updated todo object.
- * @throws {Error} If the request fails or the response is not successful.
+ * @returns {Promise<void>}
  */
 export const updateTodo = async (id, updatedTodo) => {
-    try {
-        const response = await fetch(backendUrl + `todos/${id}/`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': authToken,
-            },
-            body: JSON.stringify(updatedTodo),
-        });
-        if (!response.ok) {
-            throw new Error(response);
-        }
-    } catch (error) {
-        throw new Error('Failed to update todo:', error);
+    const index = todos.findIndex(todo => todo.id === parseInt(id));
+    if (index !== -1) {
+        todos[index] = { ...todos[index], ...updatedTodo };
     }
 };
 
 /**
- * Retrieves todo statistics from the backend API.
+ * Retrieves todo statistics from the local JSON file.
  * @returns {Promise<Object>} A promise that resolves to an object containing todo statistics.
- * @throws {Error} If the request fails or the response is not successful.
  */
 export const getTodoStats = async () => {
-    try {
-        const response = await fetch(backendUrl + 'todos/stats/', {
-            method: 'GET',
-            headers: {
-                'Authorization': authToken,
-            },
-        });
-        if (!response.ok) {
-            throw new Error(response);
-        }
-        const stats = await response.json();
-        return stats;
-    } catch (error) {
-        throw new Error('Failed to fetch todo stats:', error);
-    }
+    const total = todos.length;
+    const completed = todos.filter(todo => todo.completed).length;
+    const incomplete = total - completed;
+
+    return {
+        total,
+        completed,
+        incomplete
+    };
 };

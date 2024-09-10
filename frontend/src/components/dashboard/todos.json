@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "user": 1,
+      "title": "Buy groceries",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "user": 1,
+      "title": "Read a book",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "user": 1,
+      "title": "Write a blog post",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "user": 1,
+      "title": "Go for a run",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "user": 1,
+      "title": "Clean the house",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "user": 3,
+      "title": "Fix the bike",
+      "completed": true
+    },
+    {
+      "id": 7,
+      "user": 1,
+      "title": "Prepare dinner",
+      "completed": false
+    },
+    {
+      "id": 8,
+      "user": 1,
+      "title": "Attend meeting",
+      "completed": true
+    },
+    {
+      "id": 9,
+      "user": 1,
+      "title": "Finish project",
+      "completed": false
+    },
+    {
+      "id": 10,
+      "user": 1,
+      "title": "Plan vacation",
+      "completed": true
+    }
+  ]
